@@ -35,9 +35,8 @@ const request = async (
             
         })
     } catch (e) {
-        throw e
         error(e.toString())
-        return
+        throw e
     }
     
     const body = result.data

@@ -13,7 +13,7 @@ import {
 
 import App from '../pages/Index'
 import Login from '../pages/LoginRegister'
-
+import BookDetail from '../pages/BookDetail'
 
 const PrivateRoute = ({ isLogin, component: Component, ...rest }) => (
   <Route
@@ -48,5 +48,6 @@ export default () => (
   <Switch>
     <Route path="/" exact component={App} key="index" />} />
     <Route path="/login" component={Login} key="login" />
+    <Route path="/book/:id" component={BookDetail} key="bookDetail" />
   </Switch>
 )

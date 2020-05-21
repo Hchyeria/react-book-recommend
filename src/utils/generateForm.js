@@ -1,5 +1,5 @@
-import React, { useState, useCallback, memo, lazy, Suspense } from 'react'
-import { Form, Input, InputNumber, Select, Col, Button, Row } from 'antd'
+import React, { useState, useCallback, memo } from 'react'
+import { Form, Input, InputNumber, Col, Button, Row } from 'antd'
 
 const defaultFormItemLayout = {
 	labelCol: {
@@ -24,45 +24,15 @@ const defaultTailFormItemLayout = {
 	},
 }
 
-// const config = {
-//   onFinish,
-//   name,
-//   formItemLayout,
-//   data: {
-//     [
-//       type: input,
-//       element: {
-//         style,
-//         text
-//       }
-//       formItem: {
-//         label,
-//         name,
-//         rules: [
-//           { required: true,
-//             message: 'Please input your username!'
-//           }
-//         ],
-//         hasFeedback
-//       }
-//       setState: true,
-//     ],
-//     [
-//       type: reactChild,
-//     ],
-//     [
-
-//     ]
-//   }
-// }
 
 const ButtonItem = (props) => {
 	const [buttonLoading, setButtonLoading] = useState(false)
 
+  const { onClick } = props
 	const handleClick = useCallback(() => {
 		setButtonLoading(true)
-		props.onClick(setButtonLoading)
-	})
+		onClick(setButtonLoading)
+	}, [onClick])
 
 	const { element = {} } = props
 
@@ -82,19 +52,15 @@ const ItemForm = (props) => {
 	switch (props.type) {
 		case 'Input': {
 			return <Input {...element} />
-			break
 		}
 		case 'Number': {
 			return <InputNumber {...element} />
-			break
 		}
 		case 'Select': {
 			return props.reactChild
-			break
 		}
 		case 'Button': {
 			return <ButtonItem {...props} />
-			break
 		}
 		default: {
 			return props.reactChild
@@ -116,20 +82,24 @@ const generateForm = (config) => {
 		const [form] = Form.useForm()
 		const [submitLoading, setSubmitLoading] = useState(false)
 
+    const { cb } = props
+
 		const onFinish = useCallback((values) => {
 			setSubmitLoading(true)
 
-      config.onFinish && config.onFinish(values, setSubmitLoading)
-      props.cb && props.cb()
-		}, [])
+      config.onFinish && config.onFinish(values, setSubmitLoading, cb)
+		}, [cb])
 
 		const formItemLayout = config.formItemLayout || defaultFormItemLayout
 		const formName = config.name || 'default form'
-		const submitText = config.submitText || 'Register'
+    const submitText = config.submitText || 'Register'
+    
+    const { setting = {} } = config
 
 		return (
 			<>
 				<Form
+          {...setting}
 					{...formItemLayout}
 					form={form}
 					name={formName}
