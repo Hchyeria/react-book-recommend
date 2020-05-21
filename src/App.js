@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './styles/index.styl';
+import 'normalize.css/normalize.css'
+import { createBrowserHistory } from 'history';
+import { Router } from 'react-router-dom';
+import RouteConfig from './configs/Router'
+import { Provider } from 'mobx-react'
+import Layout from './components/layout'
+import store from './stores/store' 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App = () => 
+    <Provider store={store}>
+        <Router history={createBrowserHistory()}>
+            <Layout>
+                <RouteConfig />
+            </Layout>
+        </Router>
+    </Provider>
+        
 
 export default App;
