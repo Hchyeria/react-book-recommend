@@ -6,12 +6,10 @@ import './index.styl'
 import BookInfo from '../bookInfo'
 const { Paragraph, Text } = Typography
 
-
 const BookDetail = memo(({ pageSize = 5, data, ...props }) => {
-
 	return (
 		<List
-			grid={{ gutter: 16, column: 2 }}	
+			grid={{ gutter: 16, column: 2 }}
 			size="large"
 			pagination={{
 				pageSize: pageSize,
@@ -38,21 +36,17 @@ const BookDetail = memo(({ pageSize = 5, data, ...props }) => {
 								</Link>
 							</div>
 						}
-					> 
+					>
 						<List.Item.Meta
 							className="book-meta"
 							title={
-								
 								<Link to={`/book/${item.bookId}`}>
 									<Tooltip title={item.bookName}>
-										<Text strong ellipsis className='book-title'>
+										<Text strong ellipsis className="book-title">
 											{item.bookName}
 										</Text>
 									</Tooltip>
-									
 								</Link>
-								
-								
 							}
 							description={
 								<BookInfo
