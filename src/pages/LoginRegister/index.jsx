@@ -8,15 +8,17 @@ import appState from '../../stores/appState'
 
 const { TabPane } = Tabs
 const LoginRegister = memo((props) => {
-	const { history: goBack } = props
+	const { history: { goBack } } = props
 
-    const loginSuccess = useCallback(() => {
+    const loginSuccess = useCallback((user) => {
+		appState.login()
+		appState.setUser(user)
         goBack()
-        appState.login()
-    }, [goBack])
-	// if (localStorage.getItem('token') && appState.isLogin) {
-	//     goBack()
-	// }
+	}, [])
+	
+	if (localStorage.getItem('token') && appState.isLogin) {
+	    goBack()
+	}
 
 	return (
 		<>

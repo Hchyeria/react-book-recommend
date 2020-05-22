@@ -48,6 +48,6 @@ export default () => (
   <Switch>
     <Route path="/" exact component={App} key="index" />} />
     <Route path="/login" component={Login} key="login" />
-    <Route path="/book/:id" component={BookDetail} key="bookDetail" />
+    <InjectPrivateRoute path="/book/:id" component={BookDetail} key="bookDetail" />
   </Switch>
 )

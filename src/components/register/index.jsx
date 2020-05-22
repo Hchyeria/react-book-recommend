@@ -3,13 +3,14 @@ import {
   Select
 } from "antd";
 import './index.styl'
-import { post } from '../../utils/request'
+import register from '../../apis/auth/register'
 import generateForm from '../../utils/generateForm'
 
 
 const onFinish = (value, setLoading) => {
-  setTimeout(() => setLoading(false), 1000)
-  console.log(value)
+  const { confirm, ...data } = value
+  register(data)
+  setLoading(false)
 }
 
 const config = {

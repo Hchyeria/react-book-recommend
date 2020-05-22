@@ -78,7 +78,7 @@ export class Book {
 		{
 			bookId: 8804,
 			isbn: '9787205060442',
-			bookName: '红军不怕远征难',
+			bookName: '红军不怕远征难红军不怕远征难红军不怕远征难红军不怕远征难红军不怕远征难',
 			bookSubname: '',
             authorId: 6963,
             author: '[韩]李沧东',
@@ -529,7 +529,10 @@ export class Book {
         '股票',
         '企业史',
         '科技'    
-    ]
+	]
+	
+	@observable
+	infoList = {}
 
 	@action
 	setLike = (like) => {
@@ -544,6 +547,12 @@ export class Book {
 	@action
 	setListByIndex = (value, index) => {
 		this.list[index] = value
+	}
+
+	@action
+	setBookById = (book) => {
+		if (this.infoList[book.bookId]) return
+		this.infoList[book.bookId] = book
 	}
 }
 

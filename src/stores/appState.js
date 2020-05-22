@@ -3,7 +3,7 @@ import { success } from '../utils/Message'
 
 export class AppState {
 	@observable isLogin = !!localStorage.getItem('token')
-	@observable isLoading = false
+	@observable isLoading = true
 
 	@observable
 	user = {
@@ -24,6 +24,17 @@ export class AppState {
 		localStorage.clear()
 		this.isLogin = false
 		success('Logout Successfully!')
+	}
+
+	@action
+	setUser = (user) => {
+		this.user = user
+	}
+
+	@action
+	setLoading = (value) => {
+		this.isLoading = value
+		console.log(this.isLoading)
 	}
 }
 

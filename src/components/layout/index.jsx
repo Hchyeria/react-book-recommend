@@ -4,14 +4,25 @@ import { observer } from 'mobx-react'
 import { UserOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
+import Loading from '../../components/loading'
 import './index.styl'
 import Container from '../../utils/Container'
 import appState from '../../stores/appState'
 import logo from '../../asserts/logo.png'
+
+const style = {
+  width: '100%',
+  maxWidth: 1200,
+  marginRight:'auto',
+  marginLeft: 'auto',
+  paddingLeft: 20,
+  paddingRight: 20
+}
+
 const { Header, Content, Footer } = Layout
 
 const AppLayout = observer(({ children, history }) => {
-	const { isLoading } = appState
+	const { isLogin } = appState
 
 	const { query: { query = '' } = {} } = history
 
@@ -34,12 +45,12 @@ const AppLayout = observer(({ children, history }) => {
 	const UserDropDown = (
 		<Menu>
 			<Menu.Item>
-                <Link to="/me">个人主页</Link>
+				<Link to="/user">个人主页</Link>
 			</Menu.Item>
-            <Menu.Item>
-                <Link to="/account">账号管理</Link>
+			<Menu.Item>
+				<Link to="/account">账号管理</Link>
 			</Menu.Item>
-            <Menu.Item>
+			<Menu.Item>
 				<Button onClick={appState.logout} type="link">
 					注销
 				</Button>
@@ -50,15 +61,15 @@ const AppLayout = observer(({ children, history }) => {
 	return (
 		<Layout>
 			<Header className="site-header">
-				<Container>
+				<Container style={style}>
 					<div className="header-inner">
 						<div className="header-left">
 							<div className="logo">
-                                <Link to="/">
+								<Link to="/">
 									<img src={logo} alt="logo" className="logo-img" />
 								</Link>
 							</div>
-                            <Menu
+							<Menu
 								mode="horizontal"
 								defaultSelectedKeys={['1']}
 								style={{ lineHeight: '62px', marginRight: '10px' }}
@@ -72,7 +83,7 @@ const AppLayout = observer(({ children, history }) => {
 								<Menu.Item key="3">
 									<Link to="/list">年度榜单</Link>
 								</Menu.Item>
-                                <Menu.Item key="4">
+								<Menu.Item key="4">
 									<Link to="/shop">小葵花书店</Link>
 								</Menu.Item>
 							</Menu>
@@ -84,10 +95,9 @@ const AppLayout = observer(({ children, history }) => {
 									placeholder="书名、作者、ISBN"
 								/>
 							</div>
-							
 						</div>
 						<div className="header-right">
-							{appState.isLogin ? (
+							{isLogin ? (
 								<Dropdown overlay={UserDropDown}>
 									<Avatar size={40} />
 								</Dropdown>
@@ -102,7 +112,8 @@ const AppLayout = observer(({ children, history }) => {
 					</div>
 				</Container>
 			</Header>
-			<Content style={{ minHeight: '700px' }}>
+
+			<Content style={{ ...style, minHeight: '700px' }}>
 				<Container>{children}</Container>
 			</Content>
 			<Footer className="footer">小葵花二班 Copyright © 2020-present</Footer>

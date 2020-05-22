@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { List, Typography, Rate } from 'antd'
+import { List, Typography, Rate, Tooltip } from 'antd'
 
 import { Link } from 'react-router-dom'
 import './index.styl'
@@ -7,15 +7,16 @@ import BookInfo from '../bookInfo'
 const { Paragraph, Text } = Typography
 
 
-const BookDetail = memo((props) => {
+const BookDetail = memo(({ pageSize = 5, data, ...props }) => {
+
 	return (
 		<List
-			grid={{ gutter: 16, column: 2 }}
+			grid={{ gutter: 16, column: 2 }}	
 			size="large"
 			pagination={{
-				pageSize: 10,
+				pageSize: pageSize,
 			}}
-			dataSource={props.data}
+			dataSource={data}
 			renderItem={(item) => (
 				<div style={{ width: '46%', marginBottom: '20px' }}>
 					<List.Item
@@ -37,13 +38,21 @@ const BookDetail = memo((props) => {
 								</Link>
 							</div>
 						}
-					>
+					> 
 						<List.Item.Meta
 							className="book-meta"
 							title={
+								
 								<Link to={`/book/${item.bookId}`}>
-									<Text strong>{item.bookName}</Text>
+									<Tooltip title={item.bookName}>
+										<Text strong ellipsis className='book-title'>
+											{item.bookName}
+										</Text>
+									</Tooltip>
+									
 								</Link>
+								
+								
 							}
 							description={
 								<BookInfo

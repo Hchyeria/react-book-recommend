@@ -3,23 +3,12 @@ import { success } from '../../utils/Message'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import './index.styl'
 
-import { post } from '../../utils/request'
+import logIn from '../../apis/auth/logIn'
 import generateForm from '../../utils/generateForm'
 
 const onFinish = (values, setLoading, cb) => {
-	const postData = async () => {
-		const res = await post({
-			url: 'user/login',
-			data: values,
-		})
-		setLoading(false)
-		if (res.status) {
-			success('Login successfully!')
-      localStorage.setItem('token', res.data)
-      cb && cb()
-		}
-	}
-	postData()
+	logIn(values, cb)
+	setLoading(false)
 }
 
 const config = {

@@ -1,19 +1,19 @@
 import React, { memo } from 'react'
-import { List, Typography, Rate, Popover } from 'antd'
+import { List, Typography, Rate, Popover, Tooltip } from 'antd'
 
 import { Link } from 'react-router-dom'
 import './index.styl'
 import BookInfo from '../bookInfo'
 const { Paragraph, Text } = Typography
 
-const BookSimple = memo((props) => {
+const BookSimple = memo(({ pageSize = 10, closePagination, data, props }) => {
 	return (
 		<List
 			grid={{ gutter: 16, column: 5 }}
-			pagination={props.closePagination ? false : {
-				pageSize: 10,
+			pagination={closePagination ? false : {
+				pageSize: pageSize,
 			}}
-			dataSource={props.data}
+			dataSource={data}
 			renderItem={(item) => (
 				<List.Item
 					className="book-simple"
@@ -53,9 +53,12 @@ const BookSimple = memo((props) => {
 						className="book-meta"
 						title={
 							<Link to={`/book/${item.bookId}`}>
-								<Text strong ellipsis style={{ width: '8.4vw' }}>
-									{item.bookName}
-								</Text>
+								<Tooltip title={item.bookName}>
+									<Text strong ellipsis style={{ width: '8.4vw' }}>
+										{item.bookName}
+									</Text>
+								</Tooltip>
+								
 								<br />
 								<Text>{item.author}</Text>
 							</Link>
