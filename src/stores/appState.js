@@ -1,7 +1,6 @@
 import { observable, action } from 'mobx'
 import { success } from '../utils/Message'
 
-
 export class AppState {
 	@observable isLogin = !!localStorage.getItem('token')
 	@observable isLoading = true
@@ -35,7 +34,6 @@ export class AppState {
 	@action
 	setLoading = (value) => {
 		this.isLoading = value
-		console.log(this.isLoading)
 	}
 }
 

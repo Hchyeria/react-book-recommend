@@ -16,7 +16,6 @@ import { getBookById } from '../../apis/book/book.js'
 
 const { Title, Paragraph, Text } = Typography
 
-
 const BookDetail = observer((props) => {
   const { isLoading } = appState
 
@@ -24,6 +23,7 @@ const BookDetail = observer((props) => {
 		match: {
 			params: { id },
 		},
+
 	} = props
 
 	useEffect(() => {
@@ -142,8 +142,8 @@ const BookDetail = observer((props) => {
 
 	return (
     <Container className="container" isLoading={isLoading}>
-      <RenderElement bookInfo={Book.infoList[id] ? Book.infoList[id] : {}} />
-  </Container>
+        <RenderElement bookInfo={Book.infoList[id] ? Book.infoList[id] : {}} />
+    </Container>
   )
 })
 

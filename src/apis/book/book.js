@@ -2,12 +2,12 @@ import { get } from '../../utils/request'
 import { success } from '../../utils/Message.jsx'
 import Book from '../../stores/book'
 
-export const getBookById = async (bookId, cb) => {
-    if (Book.infoList[bookId]) return
+export const getBookById = async (bookID, cb) => {
+    if (Book.infoList[bookID]) return
     const res = await get({
         url: '/book',
         params: {
-            bookId
+            bookID
         }
     })
 

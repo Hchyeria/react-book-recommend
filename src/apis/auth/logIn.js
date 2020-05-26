@@ -1,7 +1,6 @@
 import { post } from '../../utils/request'
 import { success } from '../../utils/Message.jsx'
 
-
 export default async (data, cb) => {
     const res = await post({
         url: 'user/login',
@@ -16,3 +15,4 @@ export default async (data, cb) => {
         cb && cb(user)
     }
 }
+
