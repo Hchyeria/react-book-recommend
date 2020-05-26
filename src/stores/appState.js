@@ -34,7 +34,6 @@ export class AppState {
 	@action
 	setLoading = (value) => {
 		this.isLoading = value
-		console.log(this.isLoading)
 	}
 }
 

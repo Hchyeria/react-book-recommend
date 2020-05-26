@@ -51,7 +51,7 @@ export default () => (
   <Switch>
     <Route path="/" exact component={App} key="index" />} />
     <Route path="/login" component={Login} key="login" />
-    <Route path="/recommend" exact component={Recommend} key="index" />} />
+    <InjectPrivateRoute path="/recommend" exact component={Recommend} key="recommend" />} />
     <Route path="/list" exact component={Lists} key="index" />} />
     <Route path="/home" exact component={Home} key="index" />} />
     <InjectPrivateRoute path="/book/:id" component={BookDetail} key="bookDetail" />

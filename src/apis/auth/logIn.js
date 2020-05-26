@@ -15,3 +15,4 @@ export default async (data, cb) => {
         cb && cb(user)
     }
 }
+
