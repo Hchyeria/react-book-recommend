@@ -6,19 +6,22 @@ import './index.styl'
 import BookInfo from '../bookInfo'
 const { Paragraph, Text } = Typography
 
-
 const BookTop = memo(({ pageSize = 5, data, ...props }) => {
-
 	return (
 		<List
-			grid={{ gutter: 16, column: 2 }}	
+			grid={{ gutter: 16, column: 2 }}
 			size="large"
 			dataSource={data}
 			renderItem={(item) => (
 				<div style={{ width: '80%', marginBottom: '20px' }}>
 					<List.Item
 						className="book-card"
-						style={{ marginBottom: '10px', height: '180px' }}
+						style={{
+							marginBottom: '10px',
+							height: '180px',
+							width: '74%',
+							margin: '0 auto',
+						}}
 						key={item.bookId}
 						extra={
 							<div className="book-cover">
@@ -35,21 +38,17 @@ const BookTop = memo(({ pageSize = 5, data, ...props }) => {
 								</Link>
 							</div>
 						}
-					> 
+					>
 						<List.Item.Meta
 							className="book-meta"
 							title={
-								
 								<Link to={`/book/${item.bookId}`}>
 									<Tooltip title={item.bookName}>
-										<Text strong ellipsis className='book-title'>
+										<Text strong ellipsis className="book-title">
 											{item.bookName}
 										</Text>
 									</Tooltip>
-									
 								</Link>
-								
-								
 							}
 							description={
 								<BookInfo
@@ -60,10 +59,7 @@ const BookTop = memo(({ pageSize = 5, data, ...props }) => {
 								/>
 							}
 						/>
-
 					</List.Item>
-
-					
 				</div>
 			)}
 		/>

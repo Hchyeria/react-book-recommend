@@ -220,7 +220,7 @@ export class Book {
 			bookId: 8810,
 			isbn: '9787205060404',
 			bookName: '健康教育',
-			bookSubname: ''
+			bookSubname: '',
             authorId: 1149,
             author: '[韩]李沧东',
 			countryId: 2,
@@ -821,15 +821,11 @@ export class Book {
 	}
 
 	@action
-	setTop = (top) => {
-		this.top = top
+	setTop = ([top, ...books]) => {
+		if (!books.length) return
+		this.top[0] = top
+		this.top10 = books
 	}
-
-	@action
-	setTop10 = (top10) => {
-		this.top10 = top10
-	}
-
 }
 
 export default new Book()

@@ -17,24 +17,22 @@ import { getBookById } from '../../apis/book/book.js'
 const { Title, Paragraph, Text } = Typography
 
 const BookDetail = observer((props) => {
-  const { isLoading } = appState
+	const { isLoading } = appState
 
 	const {
 		match: {
 			params: { id },
 		},
-
 	} = props
 
 	useEffect(() => {
-    appState.setLoading(true)
-    const fetchData = async () => {
-      await getBookById(id, Book.setBookById)
-      appState.setLoading(false)
-    }
-    fetchData();
+		appState.setLoading(true)
+		const fetchData = async () => {
+			await getBookById(id, Book.setBookById)
+			appState.setLoading(false)
+		}
+		fetchData()
 	}, [id])
-
 
 	const RenderElement = memo(({ bookInfo = {} }) => {
 		const {
@@ -141,10 +139,10 @@ const BookDetail = observer((props) => {
 	const likeSame = Book.list
 
 	return (
-    <Container className="container" isLoading={isLoading}>
-        <RenderElement bookInfo={Book.infoList[id] ? Book.infoList[id] : {}} />
-    </Container>
-  )
+		<Container className="container" isLoading={isLoading}>
+			<RenderElement bookInfo={Book.infoList[id] ? Book.infoList[id] : {}} />
+		</Container>
+	)
 })
 
 export default BookDetail

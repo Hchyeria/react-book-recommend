@@ -17,22 +17,30 @@ import ListTitleBox from '../../components/ListTitleBox'
 import BookTop from '../../components/BookTop'
 import BookTop10 from '../../components/BookTop10'
 
+import getHotRank  from '../../apis/recommend/hotRank.js'
+
+const params = {
+    page: 1,
+    size: 10
+}
+
+
 const Lists = observer((props) => {
     
     const { isLoading } = appState 
-
     useEffect(() => {
         appState.setLoading(true)
-        setTimeout(() => {
+        const fetchData = async () => {
+            await getHotRank(params, Book.setTop)
             appState.setLoading(false)
-        }, 100)
+        }
+        fetchData()        
     }, [])
 
     return (
         <Container className="List" isLoading={isLoading}>
             <div className='container-mid'>
-                <ListTitleBox title1={'2019年度'} title2={'最受欢迎图书'}>
-                </ListTitleBox>
+                <ListTitleBox title1={'2019年度'} title2={'最受欢迎图书'} />
                 <BookTop data={Book.top} />
                 <div className='book-top-10'>
                     <BookTop10 data={Book.top10} />
