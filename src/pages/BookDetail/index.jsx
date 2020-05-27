@@ -13,6 +13,7 @@ import Review from '../../components/review'
 import IconText from '../../utils/IconText'
 import Container from '../../utils/Container'
 import { getBookById } from '../../apis/book/book.js'
+import getBookRecommend from '../../apis/recommend/book.js'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -25,10 +26,17 @@ const BookDetail = observer((props) => {
 		},
 	} = props
 
+	const params1 = {
+		bookID: id,
+        page: 1,
+        size: 10,
+    }
+
 	useEffect(() => {
 		appState.setLoading(true)
 		const fetchData = async () => {
 			await getBookById(id, Book.setBookById)
+			await getBookRecommend(params1, Book.setList)
 			appState.setLoading(false)
 		}
 		fetchData()

@@ -12,24 +12,33 @@ import RecommendTagList from '../../components/recommendTagList'
 import BookSmall from '../../components/bookSmall'
 import Container from '../../utils/Container'
 import appState from '../../stores/appState.js'
+import getUserRecommend from '../../apis/recommend/user.js'
 import Book from '../../stores/book'
 
 const Recommend = observer((props) => {
 
     const { isLoading } = appState
 
+    const params = {
+        page: 1,
+        size: 10,
+        userID: appState.user['userId']
+    }
+
     useEffect(() => {
         appState.setLoading(true)
-        setTimeout(() => {
+        const fetchData = async () => {
+            await getUserRecommend(params, Book.setLike)
             appState.setLoading(false)
-        }, 100)
+        }
+        fetchData() 
     }, [])
 
     return (
         <Container className="BookGuess" isLoading={isLoading}>
             <div className='guess-container-left'>
                 <BookTitleBox title={'猜你可能感兴趣的图书'}>
-                    <BookSimple data={Book.list} />
+                    <BookSimple data={Book.like} />
                 </BookTitleBox>
                 <BookTitleBox title={'猜你的阅读兴趣'}>
                     <RecommendTagList data={Book.recommendTags} />

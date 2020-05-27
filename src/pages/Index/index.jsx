@@ -13,16 +13,32 @@ import BookSmall from '../../components/bookSmall'
 import Container from '../../utils/Container'
 import appState from '../../stores/appState.js'
 import Book from '../../stores/book'
+import getUserRecommend from '../../apis/recommend/user.js'
+import getHotRank from '../../apis/recommend/hotRank.js'
 
 const App = observer((props) => {
     
     const { isLoading } = appState 
 
+    const params = {
+        page: 1,
+        size: 10,
+        userID: appState.user['userId']
+    }
+
+    const params1 = {
+        page: 1,
+        size: 11,
+    }
+
     useEffect(() => {
         appState.setLoading(true)
-        setTimeout(() => {
+        const fetchData = async () => {
+            await getUserRecommend(params, Book.setLike)
+            await getHotRank(params1, Book.setTop)
             appState.setLoading(false)
-        }, 100)
+        }
+        fetchData() 
     }, [])
 
     return (
@@ -32,7 +48,7 @@ const App = observer((props) => {
                     <BookDetail data={Book.like} />
                 </BookTitleBox>
                 <BookTitleBox title={'最受关注的图书'}>
-                    <BookSimple data={Book.list} />
+                    <BookSimple data={Book.top10} />
                 </BookTitleBox>
             </div>
             <div className='container-right'>
@@ -40,7 +56,7 @@ const App = observer((props) => {
                     <TagList data={Book.tags} />
                 </BookTitleBox>
                 <BookTitleBox title={'畅销图书榜'}>
-                    <BookSmall data={Book.like} />
+                    <BookSmall data={Book.top10} />
                 </BookTitleBox>
             </div>
 

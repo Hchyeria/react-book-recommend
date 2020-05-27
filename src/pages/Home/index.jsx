@@ -16,23 +16,30 @@ import appState from '../../stores/appState.js'
 import Book from '../../stores/book'
 import HomeHead from '../../components/homeHead'
 import BookComment from '../../components/bookComment'
-
+import getUserbyId from '../../apis/user/center.js'
+import User from '../../stores/user'
 
 const Home = observer((props) => {
 
     const { isLoading } = appState
 
+    const params = {
+        userID: appState.user['userId']
+    }
+
     useEffect(() => {
         appState.setLoading(true)
-        setTimeout(() => {
-            appState.setLoading(false)
-        }, 100)
+        const fetchData = async () => {
+			// await getUserbyId(params, User.setInfo)
+			appState.setLoading(false)
+		}
+		fetchData()
     }, [])
 
     return (
         <Container className="Home" isLoading={isLoading}>
             <div className='home-container'>
-                <HomeHead username='youke007'>
+                <HomeHead username='test'>
                     <BookTitleBox title={'读过'}>
                         <BookRead data={Book.like} />
                     </BookTitleBox>
