@@ -1,7 +1,6 @@
 import { observable, action } from 'mobx'
 
 export class User {
-
 	@observable
 	wantRead = [
 		{
@@ -150,3 +149,4 @@ export class User {
 }
 
 export default new User()
+
