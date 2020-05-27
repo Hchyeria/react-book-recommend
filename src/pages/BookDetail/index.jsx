@@ -17,6 +17,9 @@ import getBookRecommend from '../../apis/recommend/book.js'
 import rateBookById from '../../apis/book/rate.js'
 import WantRead from '../../components/wantRead'
 import wantBookById from '../../apis/user/want.js'
+import readBookById from '../../apis/user/read.js'
+import HasRead from '../../components/hasRead'
+import defaultUrl from '../../asserts/default.jpg'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -69,6 +72,16 @@ const BookDetail = observer((props) => {
 		wantFoo()
 	}, [id])
 
+	const upLoadRead = useCallback((_, cb) => {
+		const readFoo = async () => {
+			const data = {
+				bookID: id
+			}
+			await readBookById(data, cb)
+		}
+		readFoo()
+	}, [id])
+
 
 	const RenderElement = memo(({ bookInfo = {} }) => {
 		const {
@@ -102,7 +115,7 @@ const BookDetail = observer((props) => {
 								objectFit: 'cover',
 							}}
 							alt="cover"
-							src={coverUrl}
+							src={coverUrl ? coverUrl : defaultUrl}
 						/>
 					</div>
 					<div className="right-align">
@@ -114,9 +127,16 @@ const BookDetail = observer((props) => {
 					<Rater upLoadRate={upLoadRate} />
 				</div>
 
-				<div className="want">
-					<WantRead upLoadWant={upLoadWant} defaultValue={false} />
+				<div className="want-read">
+					<div className="want">
+						<WantRead upLoadWant={upLoadWant} defaultValue={false} />
+					</div>
+
+					<div className="read">
+						<HasRead upLoadRead={upLoadRead} defaultValue={false} />
+					</div>
 				</div>
+				
 
 				<Divider className="divider-style" />
 				<div className="book-detail-title">

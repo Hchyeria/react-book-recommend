@@ -8,10 +8,10 @@ import defaultUrl from '../../asserts/default.jpg'
 
 const { Paragraph, Text } = Typography
 
-const BookDetail = memo(({ pageSize = 5, data, ...props }) => {
+const BookSearch = memo(({ pageSize = 5, data, ...props }) => {
 	return (
 		<List
-			grid={{ gutter: 16, column: 2 }}
+			grid={{ gutter: 16, column: 1 }}
 			size="large"
 			pagination={{
 				pageSize: pageSize,
@@ -75,4 +75,4 @@ const BookDetail = memo(({ pageSize = 5, data, ...props }) => {
 	)
 })
 
-export default BookDetail
+export default BookSearch

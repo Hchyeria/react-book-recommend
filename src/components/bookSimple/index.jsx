@@ -4,6 +4,8 @@ import { List, Typography, Rate, Popover, Tooltip } from 'antd'
 import { Link } from 'react-router-dom'
 import './index.styl'
 import BookInfo from '../bookInfo'
+import defaultUrl from '../../asserts/default.jpg'
+
 const { Paragraph, Text } = Typography
 
 const BookSimple = memo(({ pageSize = 10, closePagination, data, props }) => {
@@ -42,7 +44,7 @@ const BookSimple = memo(({ pageSize = 10, closePagination, data, props }) => {
 											objectFit: 'cover',
 										}}
 										alt="cover"
-										src={item.coverUrl}
+										src={item.coverUrl ? item.coverUrl : defaultUrl}
 									/>
 								</Link>
 							</Popover>

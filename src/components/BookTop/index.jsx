@@ -4,6 +4,8 @@ import { List, Typography, Rate, Tooltip } from 'antd'
 import { Link } from 'react-router-dom'
 import './index.styl'
 import BookInfo from '../bookInfo'
+import defaultUrl from '../../asserts/default.jpg'
+
 const { Paragraph, Text } = Typography
 
 const BookTop = memo(({ pageSize = 5, data, ...props }) => {
@@ -33,7 +35,7 @@ const BookTop = memo(({ pageSize = 5, data, ...props }) => {
 											objectFit: 'cover',
 										}}
 										alt="cover"
-										src={item.coverUrl}
+										src={item.coverUrl ? item.coverUrl : defaultUrl}
 									/>
 								</Link>
 							</div>
@@ -52,7 +54,7 @@ const BookTop = memo(({ pageSize = 5, data, ...props }) => {
 							}
 							description={
 								<BookInfo
-									author={item.author}
+									author={item.author ? item.author : '未知'}
 									tags={item.tags}
 									rating={item.rating}
 									description={item.description}

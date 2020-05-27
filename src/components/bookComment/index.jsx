@@ -2,6 +2,7 @@ import React, { createElement, useState, memo } from 'react';
 import { Comment, Tooltip, Avatar } from 'antd';
 import moment from 'moment';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
+import defaultUrl from '../../asserts/default.jpg'
 
 const BookComment = memo(({
     bookName,
@@ -53,7 +54,7 @@ const BookComment = memo(({
         <Avatar
         //   src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
         //   alt="Han Solo"
-          src={coverUrl ? coverUrl : '../../asserts/default.jpg'}
+          src={coverUrl ? coverUrl : defaultUrl}
           alt={bookName}
         />
       }
