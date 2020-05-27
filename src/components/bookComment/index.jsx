@@ -6,7 +6,7 @@ import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-d
 const BookComment = memo(({
     bookName,
     coverUrl,
-    commentContent,
+    content,
 })=> {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
@@ -53,7 +53,7 @@ const BookComment = memo(({
         <Avatar
         //   src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
         //   alt="Han Solo"
-          src={coverUrl}
+          src={coverUrl ? coverUrl : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'}
           alt={bookName}
         />
       }
@@ -62,7 +62,7 @@ const BookComment = memo(({
           {/* We supply a series of design principles, practical patterns and high quality design
           resources (Sketch and Axure), to help people create their product prototypes beautifully
           and efficiently. */}
-            {commentContent}
+            {content}
         </p>
       }
       datetime={

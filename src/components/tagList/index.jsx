@@ -22,7 +22,7 @@ const TagList = memo(({ className, column = 5, ...props }) => {
 					key={index}
 					extra={
 						<Tag key={index}>
-              <Link to={`/book/tag/${index}`}>{item}</Link>
+              <Link to={`/tag/${index}`}>{item}</Link>
             </Tag>
 					}
 				>

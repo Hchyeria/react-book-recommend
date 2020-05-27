@@ -40,7 +40,7 @@ const BookTop10 = memo(({ pageSize = 10, closePagination, data, props }) => {
 											objectFit: 'cover',
 										}}
 										alt="cover"
-										src={item.coverUrl}
+										src={item.coverUrl ? item.coverUrl : 'http://api.jisuapi.com/isbn//upload/3916/3915549.jpg'}
 									/>
 								</Link>
 							</Popover>

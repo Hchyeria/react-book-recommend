@@ -14,8 +14,12 @@ import IconText from '../../utils/IconText'
 import Container from '../../utils/Container'
 import { getBookById } from '../../apis/book/book.js'
 import getBookRecommend from '../../apis/recommend/book.js'
+import rateBookById from '../../apis/book/rate.js'
 
 const { Title, Paragraph, Text } = Typography
+
+
+
 
 const BookDetail = observer((props) => {
 	const { isLoading } = appState
@@ -41,6 +45,18 @@ const BookDetail = observer((props) => {
 		}
 		fetchData()
 	}, [id])
+
+	const upLoadRate = useCallback((rating) => {
+		const rateFoo = async () => {
+			const data = {
+				bookID: id,
+				rating
+			}
+			await rateBookById(data)
+		}
+		rateFoo()
+	}, [id])
+
 
 	const RenderElement = memo(({ bookInfo = {} }) => {
 		const {
@@ -83,7 +99,7 @@ const BookDetail = observer((props) => {
 				</div>
 				<div className="rater">
 					<Text>我的评分：</Text>
-					<Rater />
+					<Rater upLoadRate={upLoadRate} />
 				</div>
 
 				<Divider className="divider-style" />
