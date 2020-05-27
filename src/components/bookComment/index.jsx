@@ -53,7 +53,7 @@ const BookComment = memo(({
         <Avatar
         //   src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
         //   alt="Han Solo"
-          src={coverUrl ? coverUrl : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'}
+          src={coverUrl ? coverUrl : '../../asserts/default.jpg'}
           alt={bookName}
         />
       }

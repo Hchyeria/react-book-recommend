@@ -15,6 +15,8 @@ import Container from '../../utils/Container'
 import { getBookById } from '../../apis/book/book.js'
 import getBookRecommend from '../../apis/recommend/book.js'
 import rateBookById from '../../apis/book/rate.js'
+import WantRead from '../../components/wantRead'
+import wantBookById from '../../apis/user/want.js'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -55,6 +57,16 @@ const BookDetail = observer((props) => {
 			await rateBookById(data)
 		}
 		rateFoo()
+	}, [id])
+
+	const upLoadWant = useCallback((want) => {
+		const wantFoo = async () => {
+			const data = {
+				bookID: id
+			}
+			await wantBookById(data)
+		}
+		wantFoo()
 	}, [id])
 
 
@@ -102,11 +114,16 @@ const BookDetail = observer((props) => {
 					<Rater upLoadRate={upLoadRate} />
 				</div>
 
+				<div className="want">
+					<WantRead upLoadWant={upLoadWant} />
+				</div>
+
 				<Divider className="divider-style" />
 				<div className="book-detail-title">
 					<Title level={4}>内容简介</Title>
 					<Paragraph ellipsis={{ rows: 2, expandable: true }}>
-						收录《人间失格》《维庸之妻》《Good-bye》《灯笼》《满愿》《美男子与香烟》《皮肤与心》《蟋蟀》《樱桃》
+						{/* 收录《人间失格》《维庸之妻》《Good-bye》《灯笼》《满愿》《美男子与香烟》《皮肤与心》《蟋蟀》《樱桃》 */}
+						{description}
 					</Paragraph>
 				</div>
 				<Divider className="divider-style" />
