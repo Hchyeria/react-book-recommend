@@ -1,23 +1,25 @@
 import React, { memo, useState, useCallback } from 'react'
-import { Button } from 'antd';
+import { Button } from 'antd'
 
 const WantRead = memo((props) => {
+	const { upLoadWant, defaultValue = false } = props
 
-    const { upLoadWant, defaultValue = 0 } = props
+	const [value, setValue] = useState(defaultValue)
 
-    const [value, setValue] = useState(defaultValue)
-    
-    const handleChange = useCallback((value) => {
-        setValue(value)
-        upLoadWant && upLoadWant(value)
-    }, [])
-    
+	const handleClick = () => {
+    const foo = () => {
+      setValue(!value)
+    }
+		upLoadWant && upLoadWant(value, foo)
+	}
 
-    return (
-        <div>
-            <Button type="primary" onClick={handleChange}>想读</Button>
-        </div>
-    )
+	return (
+		<div>
+			<Button type="primary" onClick={handleClick}>
+				{value ? '想读' : '已想读'}
+			</Button>
+		</div>
+	)
 })
 
 export default WantRead

@@ -59,12 +59,12 @@ const BookDetail = observer((props) => {
 		rateFoo()
 	}, [id])
 
-	const upLoadWant = useCallback((want) => {
+	const upLoadWant = useCallback((_, cb) => {
 		const wantFoo = async () => {
 			const data = {
 				bookID: id
 			}
-			await wantBookById(data)
+			await wantBookById(data, cb)
 		}
 		wantFoo()
 	}, [id])
@@ -115,7 +115,7 @@ const BookDetail = observer((props) => {
 				</div>
 
 				<div className="want">
-					<WantRead upLoadWant={upLoadWant} />
+					<WantRead upLoadWant={upLoadWant} defaultValue={false} />
 				</div>
 
 				<Divider className="divider-style" />
