@@ -3,11 +3,13 @@ import { Comment, Tooltip, Avatar } from 'antd';
 import moment from 'moment';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import defaultUrl from '../../asserts/default.jpg'
+import deleteReview from '../../apis/reviews/delete.js'
 
 const BookComment = memo(({
     bookName,
     coverUrl,
     content,
+    reviewId,
 })=> {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
@@ -24,6 +26,16 @@ const BookComment = memo(({
     setDislikes(1);
     setAction('disliked');
   };
+
+  const handleDelete = () => {
+    const deleteFoo = async () => {
+			const data = {
+				reviewId: reviewId
+			}
+			await deleteReview(data)
+		}
+		deleteFoo()
+  }
 
 
   const actions = [
@@ -43,7 +55,7 @@ const BookComment = memo(({
       </Tooltip>
       <span className="comment-action">{dislikes}</span>
     </span>,
-    <span key="comment-basic-reply-to">Reply to</span>,
+    <span key="comment-basic-reply-to" onClick={handleDelete}>delete</span>,
   ];
 
   return (
@@ -65,11 +77,6 @@ const BookComment = memo(({
           and efficiently. */}
             {content}
         </p>
-      }
-      datetime={
-        <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
-          <span>{moment().fromNow()}</span>
-        </Tooltip>
       }
     />
   );

@@ -8,6 +8,11 @@ const { Title, Text, Paragraph } = Typography
 
 const Review = memo((props) => {
 	const { rid, uid, userName, rating, time, content, like, comment } = props
+
+	const handleClickWriteIcon = () => {
+		
+	}
+
 	return (
 		<div className="comment-item">
 			<div className="user-info">
@@ -35,10 +40,10 @@ const Review = memo((props) => {
 				{content}
 			</Paragraph>
 			<div className="review-action">
-				<IconText icon={LikeOutlined} text={`${like} 赞成`} />
-				<Link to={`/review/${rid}`} style={{ color: 'rgba(0, 0, 0, 0.65)' }}>
+				<IconText icon={LikeOutlined} text={`${like ? like : 0} 赞成`} onClick={handleClickWriteIcon}/>
+				{/* <Link to={`/review/${rid}`} style={{ color: 'rgba(0, 0, 0, 0.65)' }}>
 					<IconText icon={CommentOutlined} text={`${comment} 评论`} />
-				</Link>
+				</Link> */}
 			</div>
 		</div>
 	)

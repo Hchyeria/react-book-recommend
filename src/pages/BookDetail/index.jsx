@@ -21,6 +21,8 @@ import readBookById from '../../apis/user/read.js'
 import HasRead from '../../components/hasRead'
 import defaultUrl from '../../asserts/default.jpg'
 import AddReview from '../../components/addReview'
+import getReviewByHot from '../../apis/reviews/agreeNum.js'
+import getReviewByTime from '../../apis/reviews/reviewTime.js'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -40,6 +42,12 @@ const BookDetail = observer((props) => {
 		bookID: id,
         page: 1,
         size: 10,
+	}
+	
+	const params2 = {
+		bookId: id,
+        page: 1,
+        size: 10,
     }
 
 	useEffect(() => {
@@ -47,6 +55,8 @@ const BookDetail = observer((props) => {
 		const fetchData = async () => {
 			await getBookById(id, Book.setBookById)
 			await getBookRecommend(params1, Book.setList)
+			await getReviewByTime(params2, ReviewStore.setTime)
+			await getReviewByHot(params2, ReviewStore.setHot)
 			appState.setLoading(false)
 		}
 		fetchData()
@@ -86,7 +96,7 @@ const BookDetail = observer((props) => {
 	const [isShowReviewFrom, setIsShowReviewFrom] = useState(false)
 
 	const handleClickWriteIcon = () => {
-		console.log(isShowReviewFrom)
+		// console.log(isShowReviewFrom)
 		setIsShowReviewFrom(!isShowReviewFrom)
 	}
 
@@ -193,7 +203,21 @@ const BookDetail = observer((props) => {
 						pagination={{
 							pageSize: 10,
 						}}
-						dataSource={ReviewStore.list}
+						dataSource={ReviewStore.hot}
+						renderItem={(item) => (
+							<List.Item key={item.rid}>
+								<Review {...item} />
+							</List.Item>
+						)}
+					/>
+				</div>
+				<div className="book-detail-title">
+					<Title level={4}>最新评论</Title>
+					<List
+						pagination={{
+							pageSize: 10,
+						}}
+						dataSource={ReviewStore.time}
 						renderItem={(item) => (
 							<List.Item key={item.rid}>
 								<Review {...item} />
@@ -205,7 +229,7 @@ const BookDetail = observer((props) => {
 				<Divider className="divider-style" />
 				{
 					isShowReviewFrom 
-					? <AddReview />
+					? <AddReview bookId={bookId}/>
 					: null
 				}
 			</>
