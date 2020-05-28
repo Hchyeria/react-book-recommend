@@ -16,7 +16,7 @@ const WantRead = memo((props) => {
 	return (
 		<div>
 			<Button type="primary" onClick={handleClick}>
-				{value ? '想读' : '已想读'}
+				{value ? '已想读' : '想读' }
 			</Button>
 		</div>
 	)

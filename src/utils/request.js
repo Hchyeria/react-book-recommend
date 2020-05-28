@@ -48,6 +48,7 @@ const request = async (
                 appState.logout()
             }
             error(errCode + ': ' + errMsg)
+            console.log(result)
         }
         
     }

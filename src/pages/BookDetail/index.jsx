@@ -20,6 +20,7 @@ import wantBookById from '../../apis/user/want.js'
 import readBookById from '../../apis/user/read.js'
 import HasRead from '../../components/hasRead'
 import defaultUrl from '../../asserts/default.jpg'
+import AddReview from '../../components/addReview'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -82,6 +83,13 @@ const BookDetail = observer((props) => {
 		readFoo()
 	}, [id])
 
+	const [isShowReviewFrom, setIsShowReviewFrom] = useState(false)
+
+	const handleClickWriteIcon = () => {
+		console.log(isShowReviewFrom)
+		setIsShowReviewFrom(!isShowReviewFrom)
+	}
+
 
 	const RenderElement = memo(({ bookInfo = {} }) => {
 		const {
@@ -99,6 +107,8 @@ const BookDetail = observer((props) => {
 			coverUrl = '',
 			rating = 0,
 			description = '',
+			hasRead,
+			wantRead
 		} = bookInfo
 
 		return (
@@ -124,16 +134,16 @@ const BookDetail = observer((props) => {
 				</div>
 				<div className="rater">
 					<Text>我的评分：</Text>
-					<Rater upLoadRate={upLoadRate} />
+					<Rater upLoadRate={upLoadRate} defaultValue={4} />
 				</div>
 
 				<div className="want-read">
 					<div className="want">
-						<WantRead upLoadWant={upLoadWant} defaultValue={false} />
+						<WantRead upLoadWant={upLoadWant} defaultValue={wantRead} />
 					</div>
 
 					<div className="read">
-						<HasRead upLoadRead={upLoadRead} defaultValue={false} />
+						<HasRead upLoadRead={upLoadRead} defaultValue={hasRead} />
 					</div>
 				</div>
 				
@@ -191,8 +201,13 @@ const BookDetail = observer((props) => {
 						)}
 					/>
 				</div>
-				<IconText icon={EditOutlined} text={'写书评'} />
+				<IconText icon={EditOutlined} text={'写书评'} onClick={handleClickWriteIcon} />
 				<Divider className="divider-style" />
+				{
+					isShowReviewFrom 
+					? <AddReview />
+					: null
+				}
 			</>
 		)
 	})

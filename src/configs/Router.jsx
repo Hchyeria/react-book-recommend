@@ -55,7 +55,7 @@ export default () => (
     <InjectPrivateRoute path="/recommend" exact component={Recommend} key="recommend" />} />
     <Route path="/list" exact component={Lists} key="index" />} />
     <Route path="/user" exact component={Home} key="user" />} />
-    <Route path="/search?query=:key" component={Search} key="search" />} />
+    <Route path="/search" component={Search} key="search" />} />
     <InjectPrivateRoute path="/book/:id" component={BookDetail} key="bookDetail" />
     <Route path="/tag/:id" component={Tag} key="tag" />
   </Switch>

@@ -19,14 +19,19 @@ import BookSearch from '../../components/bookSearch'
 import getBookBySearch from '../../apis/search/search.js'
 
 const Search= observer((props) => {
+
+    console.log(props)
     
     const { isLoading } = appState 
 
     const {
-		match: {
-			params: { key },
+		location: {
+			search
 		},
-	} = props
+    } = props
+
+    const keyMatch = search.match(/\=([\w]*)$/)
+    const key = keyMatch.length > 1 ? keyMatch[1] : ''
 
     useEffect(() => {
         appState.setLoading(true)
