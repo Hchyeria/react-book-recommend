@@ -1,16 +1,16 @@
 import React, { createElement, useState, memo } from 'react';
 import { Comment, Tooltip, Avatar } from 'antd';
 import moment from 'moment';
-import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
+import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled, DeleteOutlined } from '@ant-design/icons';
 import defaultUrl from '../../asserts/default.jpg'
 import deleteReview from '../../apis/reviews/delete.js'
 
 const BookComment = memo(({
-    bookName,
-    coverUrl,
-    content,
-    reviewId,
-})=> {
+  bookName,
+  coverUrl,
+  content,
+  reviewId,
+}) => {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [action, setAction] = useState(null);
@@ -29,12 +29,12 @@ const BookComment = memo(({
 
   const handleDelete = () => {
     const deleteFoo = async () => {
-			const data = {
-				reviewId: reviewId
-			}
-			await deleteReview(data)
-		}
-		deleteFoo()
+      const data = {
+        reviewId: reviewId
+      }
+      await deleteReview(data)
+    }
+    deleteFoo()
   }
 
 
@@ -55,7 +55,7 @@ const BookComment = memo(({
       </Tooltip>
       <span className="comment-action">{dislikes}</span>
     </span>,
-    <span key="comment-basic-reply-to" onClick={handleDelete}>delete</span>,
+    <><DeleteOutlined onClick={handleDelete} />删除</>,
   ];
 
   return (
@@ -64,8 +64,8 @@ const BookComment = memo(({
       author={bookName}
       avatar={
         <Avatar
-        //   src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-        //   alt="Han Solo"
+          //   src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+          //   alt="Han Solo"
           src={coverUrl ? coverUrl : defaultUrl}
           alt={bookName}
         />
@@ -75,7 +75,7 @@ const BookComment = memo(({
           {/* We supply a series of design principles, practical patterns and high quality design
           resources (Sketch and Axure), to help people create their product prototypes beautifully
           and efficiently. */}
-            {content}
+          {content}
         </p>
       }
     />

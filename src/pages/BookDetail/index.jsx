@@ -26,9 +26,6 @@ import getReviewByTime from '../../apis/reviews/reviewTime.js'
 
 const { Title, Paragraph, Text } = Typography
 
-
-
-
 const BookDetail = observer((props) => {
 	const { isLoading } = appState
 
@@ -40,15 +37,15 @@ const BookDetail = observer((props) => {
 
 	const params1 = {
 		bookID: id,
-        page: 1,
-        size: 10,
+		page: 1,
+		size: 10,
 	}
-	
+
 	const params2 = {
 		bookId: id,
-        page: 1,
-        size: 10,
-    }
+		page: 1,
+		size: 10,
+	}
 
 	useEffect(() => {
 		appState.setLoading(true)
@@ -156,7 +153,7 @@ const BookDetail = observer((props) => {
 						<HasRead upLoadRead={upLoadRead} defaultValue={hasRead} />
 					</div>
 				</div>
-				
+
 
 				<Divider className="divider-style" />
 				<div className="book-detail-title">
@@ -228,9 +225,9 @@ const BookDetail = observer((props) => {
 				<IconText icon={EditOutlined} text={'写书评'} onClick={handleClickWriteIcon} />
 				<Divider className="divider-style" />
 				{
-					isShowReviewFrom 
-					? <AddReview bookId={id}/>
-					: null
+					isShowReviewFrom
+						? <AddReview bookId={id} />
+						: null
 				}
 			</>
 		)

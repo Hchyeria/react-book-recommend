@@ -55,6 +55,7 @@ const BookTop = memo(({ pageSize = 5, data, ...props }) => {
 							description={
 								<BookInfo
 									author={item.author ? item.author : '未知'}
+									country={item.countryName}
 									tags={item.tags}
 									rating={item.rating}
 									description={item.description}

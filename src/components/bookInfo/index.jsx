@@ -12,6 +12,7 @@ const Description = memo(({
 	bookName,
 	bookSubname,
 	author,
+	country,
 	publisher,
 	publishedPlace,
 	publishedTime,
@@ -54,6 +55,13 @@ const Description = memo(({
 				<>
 					<Text type="secondary">{'作者：'}</Text>
 					<Text>{author}</Text>
+					<br />
+				</>
+			) : null}
+			{country ? (
+				<>
+					<Text type="secondary">{'国家：'}</Text>
+					<Text>{country}</Text>
 					<br />
 				</>
 			) : null}

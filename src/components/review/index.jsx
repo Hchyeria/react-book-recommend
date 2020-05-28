@@ -5,12 +5,13 @@ import { LikeOutlined, CommentOutlined, LikeFilled, DeleteOutlined } from '@ant-
 import './index.styl'
 import IconText from './../../utils/IconText'
 import AppState from '../../stores/appState'
+import deleteReview from '../../apis/reviews/delete.js'
 
 const { Title, Text, Paragraph } = Typography
 
 
 const Review = memo((props) => {
-	const { 
+	const {
 		agreeNumber,
 		bookId,
 		bookName,
@@ -20,13 +21,14 @@ const Review = memo((props) => {
 		reviewTime,
 		star,
 		userId,
-		userName = 'userName',
-	 } = props
+		userName,
+		hasAgree,
+	} = props
 
-	 const [like, setLike] = useState(agreeNumber)
-	 const [isLike, setIsLike] = useState(false)
+	const [like, setLike] = useState(agreeNumber)
+	const [isLike, setIsLike] = useState(hasAgree)
 
-	 const isMe = userId === AppState.user.userId
+	const isMe = userId === AppState.user.userId
 
 	const handleClickWriteIcon = () => {
 		let newLike
@@ -37,6 +39,16 @@ const Review = memo((props) => {
 		}
 		setLike(newLike)
 		setIsLike(!isLike)
+	}
+
+	const handleDelete = () => {
+		const deleteFoo = async () => {
+			const data = {
+				reviewId: reviewId
+			}
+			await deleteReview(data)
+		}
+		deleteFoo()
 	}
 
 	return (
@@ -76,8 +88,8 @@ const Review = memo((props) => {
 				</Link> */}
 				{
 					isMe
-					? <DeleteOutlined />
-					: null
+						? <><DeleteOutlined onClick={handleDelete} />删除</>
+						: null
 				}
 			</div>
 		</div>

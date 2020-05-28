@@ -52,7 +52,8 @@ const BookDetail = memo(({ pageSize = 5, data, ...props }) => {
 							}
 							description={
 								<BookInfo
-									author={item.author}
+									author={item.authorName}
+									country={item.countryName}
 									tags={item.tags}
 									rating={item.rating}
 									publisher={item.publisher}

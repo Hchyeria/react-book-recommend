@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import {
     observer
-  } from 'mobx-react'
+} from 'mobx-react'
 import './index.styl'
 
 import BookTitleBox from '../../components/bookTitleBox'
@@ -15,10 +15,11 @@ import appState from '../../stores/appState.js'
 import Book from '../../stores/book'
 import getUserRecommend from '../../apis/recommend/user.js'
 import getHotRank from '../../apis/recommend/hotRank.js'
+import getHotTag from '../../apis/recommend/hotTag.js'
 
 const App = observer((props) => {
-    
-    const { isLoading } = appState 
+
+    const { isLoading } = appState
 
     const params = {
         page: 1,
@@ -36,9 +37,10 @@ const App = observer((props) => {
         const fetchData = async () => {
             await getUserRecommend(params, Book.setLike)
             await getHotRank(params1, Book.setTop)
+            await getHotTag(params1, Book.setTag)
             appState.setLoading(false)
         }
-        fetchData() 
+        fetchData()
     }, [])
 
     return (
