@@ -229,7 +229,7 @@ const BookDetail = observer((props) => {
 				<Divider className="divider-style" />
 				{
 					isShowReviewFrom 
-					? <AddReview bookId={bookId}/>
+					? <AddReview bookId={id}/>
 					: null
 				}
 			</>

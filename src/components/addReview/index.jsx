@@ -20,16 +20,16 @@ const AddReview = memo((props) => {
     const handleRateChange = useCallback((rateValue) => {
         setRateValue(rateValue)
 	}, [])
+
+	const { bookId  } = props
 	
-	// console.log(value)
-	// console.log(bookId)
 	const handleClick = () => {
 		// setValue(value)
 		const addFoo = async () => {
 			const data = {
-				bookId: props.bookId,
+				bookId,
 				content: value,
-				star: rateValue
+				star: 1
 			}
 			await addReview(data)
 		}

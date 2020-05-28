@@ -5,14 +5,15 @@ export class ReviewStore {
     @observable
     time = [
         {   
-            rid: 1,
-            uid: 1,
-            userName: '柴犬妹妹',
-            rating: '3',
-            time: '2016-05-08',
-            content: '“实用性的苦恼，仅凭吃饭就能一笔勾销的苦恼，或许才是最强烈的痛苦。”本书吧～真是～论一个富二代的自怨自哀。',
-            like: 7132,
-            comment: 12
+            agreeNumber: 1543,
+            bookId: 1,
+            bookName: "虚拟机的设计与实现",
+            content: "这本书我挺喜欢的噢",
+            coverUrl: "",
+            reviewId: 1003,
+            reviewTime: "2020-05-28T08:33:25.000+00:00",
+            star: 4,
+            userId: 1004
         },
         {
             rid: 2,
