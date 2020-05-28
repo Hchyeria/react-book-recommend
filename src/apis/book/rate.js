@@ -1,10 +1,11 @@
 import { get } from '../../utils/request'
 import { success } from '../../utils/Message.jsx'
+import { post } from '../../utils/request'
 
 export default async (params, cb) => {
-    const res = await get({
+    const res = await post({
         url: '/book/rating',
-        params
+        data: params,
     })
 
     if (res.status) {

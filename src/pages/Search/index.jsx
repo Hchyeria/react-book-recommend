@@ -16,33 +16,38 @@ import Book from '../../stores/book'
 import getUserRecommend from '../../apis/recommend/user.js'
 import getHotRank from '../../apis/recommend/hotRank.js'
 import BookSearch from '../../components/bookSearch'
+import getBookBySearch from '../../apis/search/search.js'
 
 const Search= observer((props) => {
     
     const { isLoading } = appState 
 
-    const params = {
-        page: 1,
-        size: 10,
-        userID: appState.user['userId']
-    }
-
+    const {
+		match: {
+			params: { key },
+		},
+	} = props
 
     useEffect(() => {
         appState.setLoading(true)
-        // const fetchData = async () => {
-        //     await getUserRecommend(params, Book.setLike)
-        //     appState.setLoading(false)
-        // }
-        // fetchData() 
+        const fetchData = async () => {
+            const data = {
+                key: key,
+                page: 1,
+                size: 10
+            }
+            await getBookBySearch(data, Book.setList)
+            appState.setLoading(false)
+        }
+        fetchData() 
         appState.setLoading(false)
-    }, [])
+    }, [key])
 
     return (
         <Container className="Search" isLoading={isLoading}>
             <div className='container-left'>
                 <BookTitleBox title={'搜索到以下内容'}>
-                    <BookSearch data={Book.like} />
+                    <BookSearch data={Book.list} />
                 </BookTitleBox>
             </div>
             <div className='container-right'>
