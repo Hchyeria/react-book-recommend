@@ -5,6 +5,7 @@ export class Cart {
 	@observable
 	list = [
 		{
+			key: 2,
 			cartItemId: 2,
 			goodsId: 23,
 			goodsCount: 1,
@@ -12,7 +13,8 @@ export class Cart {
 			sellingPrice: 38
 		},
 		{
-			cartItemId: 2,
+			key: 3,
+			cartItemId: 3,
 			goodsId: 23,
 			goodsCount: 1,
 			goodsName: "艾略特波浪理论",
@@ -21,7 +23,12 @@ export class Cart {
 	]
 	@action
 	setList = (list) => {
-		this.list = list
+		this.list = list.map(ele => (
+			{
+				...ele,
+				key: ele.cartItemId
+			}
+		))
 	}
 }
 
