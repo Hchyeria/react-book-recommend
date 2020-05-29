@@ -1,65 +1,181 @@
 import { observable, action } from 'mobx'
 
+const convertList = (list) => {
+	let len = list.length
+	let temp = [[], [], []]
+	for (let i = 0; i < len; ++i) {
+		temp[i % 3].push(list[i])
+	}
+	return temp
+}
+
 export class Item {
+	@observable
+	list = [
+		[
+			{
+				authorId: 1,
+				authorName: '',
+				bookId: 3,
+				bookName: 'Java Developers ALMANAC中文版',
+				bookSubname: '',
+				countryId: 1,
+				countryName: '',
+				coverUrl: '',
+				isbn: '9787111111139',
+				page: 1007,
+				price: 99,
+				publishedPlace: '',
+				publishedTime: '2003-1',
+				publisher: '',
+				rating: 1,
+			},
+			{
+				authorId: 1,
+				authorName: '',
+				bookId: 3,
+				bookName: 'Java Developers ALMANAC中文版',
+				bookSubname: '',
+				countryId: 1,
+				countryName: '',
+				coverUrl: '',
+				isbn: '9787111111139',
+				page: 1007,
+				price: 99,
+				publishedPlace: '',
+				publishedTime: '2003-1',
+				publisher: '',
+				rating: 1,
+			},
+			{
+				authorId: 1,
+				authorName: '',
+				bookId: 3,
+				bookName: 'Java Developers ALMANAC中文版',
+				bookSubname: '',
+				countryId: 1,
+				countryName: '',
+				coverUrl: '',
+				isbn: '9787111111139',
+				page: 1007,
+				price: 99,
+				publishedPlace: '',
+				publishedTime: '2003-1',
+				publisher: '',
+				rating: 1,
+			},
+		],
+		[
+			{
+				authorId: 1,
+				authorName: '',
+				bookId: 3,
+				bookName: 'Java Developers ALMANAC中文版',
+				bookSubname: '',
+				countryId: 1,
+				countryName: '',
+				coverUrl: '',
+				isbn: '9787111111139',
+				page: 1007,
+				price: 99,
+				publishedPlace: '',
+				publishedTime: '2003-1',
+				publisher: '',
+				rating: 1,
+			},
+			{
+				authorId: 1,
+				authorName: '',
+				bookId: 3,
+				bookName: 'Java Developers ALMANAC中文版',
+				bookSubname: '',
+				countryId: 1,
+				countryName: '',
+				coverUrl: '',
+				isbn: '9787111111139',
+				page: 1007,
+				price: 99,
+				publishedPlace: '',
+				publishedTime: '2003-1',
+				publisher: '',
+				rating: 1,
+			},
+			{
+				authorId: 1,
+				authorName: '',
+				bookId: 3,
+				bookName: 'Java Developers ALMANAC中文版',
+				bookSubname: '',
+				countryId: 1,
+				countryName: '',
+				coverUrl: '',
+				isbn: '9787111111139',
+				page: 1007,
+				price: 99,
+				publishedPlace: '',
+				publishedTime: '2003-1',
+				publisher: '',
+				rating: 1,
+			},
+		],
+		[
+			{
+				authorId: 1,
+				authorName: '',
+				bookId: 3,
+				bookName: 'Java Developers ALMANAC中文版',
+				bookSubname: '',
+				countryId: 1,
+				countryName: '',
+				coverUrl: '',
+				isbn: '9787111111139',
+				page: 1007,
+				price: 99,
+				publishedPlace: '',
+				publishedTime: '2003-1',
+				publisher: '',
+				rating: 1,
+			},
+			{
+				authorId: 1,
+				authorName: '',
+				bookId: 3,
+				bookName: 'Java Developers ALMANAC中文版',
+				bookSubname: '',
+				countryId: 1,
+				countryName: '',
+				coverUrl: '',
+				isbn: '9787111111139',
+				page: 1007,
+				price: 99,
+				publishedPlace: '',
+				publishedTime: '2003-1',
+				publisher: '',
+				rating: 1,
+			},
+			{
+				authorId: 1,
+				authorName: '',
+				bookId: 3,
+				bookName: 'Java Developers ALMANAC中文版',
+				bookSubname: '',
+				countryId: 1,
+				countryName: '',
+				coverUrl: '',
+				isbn: '9787111111139',
+				page: 1007,
+				price: 99,
+				publishedPlace: '',
+				publishedTime: '2003-1',
+				publisher: '',
+				rating: 1,
+			},
+		],
+	]
 
-    @observable
-    list = [
-        {
-            authorId: 1,
-            authorName: "",
-            bookId: 3,
-            bookName: "Java Developers ALMANAC中文版",
-            bookSubname: "",
-            countryId: 1,
-            countryName: "",
-            coverUrl: "",
-            isbn: "9787111111139",
-            page: 1007,
-            price: 99,
-            publishedPlace: "",
-            publishedTime: "2003-1",
-            publisher: "",
-            rating: 1
-        },
-        {
-            authorId: 1,
-            authorName: "",
-            bookId: 3,
-            bookName: "Java Developers ALMANAC中文版",
-            bookSubname: "",
-            countryId: 1,
-            countryName: "",
-            coverUrl: "",
-            isbn: "9787111111139",
-            page: 1007,
-            price: 99,
-            publishedPlace: "",
-            publishedTime: "2003-1",
-            publisher: "",
-            rating: 1
-        },
-        {
-            authorId: 1,
-            authorName: "",
-            bookId: 3,
-            bookName: "Java Developers ALMANAC中文版",
-            bookSubname: "",
-            countryId: 1,
-            countryName: "",
-            coverUrl: "",
-            isbn: "9787111111139",
-            page: 1007,
-            price: 99,
-            publishedPlace: "",
-            publishedTime: "2003-1",
-            publisher: "",
-            rating: 1
-        },
-    ]
-
-    @action
-    setList = (list) => {
-        this.list = list
-    }
+	@action
+	setList = (list) => {
+		this.list = convertList(list)
+	}
 }
 export default new Item()

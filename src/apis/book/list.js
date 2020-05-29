@@ -4,7 +4,7 @@ import Item from '../../stores/item'
 
 
 export const getBook = async (params, cb) => {
-    if (Item.list) return
+    if (!Item.list.length) return
     const res = await get({
         url: '/book/list',
         params

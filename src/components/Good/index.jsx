@@ -30,7 +30,7 @@ const Good = memo((props) => {
         indeterminate: true,
         checkAll: false,
     }
-    const [setState] = useState(state)
+    const [_, setState] = useState(state)
     const onChange = (checkedList) => {
         setState({
             checkedList,
