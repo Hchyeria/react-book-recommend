@@ -73,7 +73,7 @@ const CardBox = memo((props) => {
                     <Meta
                         title={bookName}
                         description={
-                            price
+                            '￥' + price
                         }
                     />
                 </Card>

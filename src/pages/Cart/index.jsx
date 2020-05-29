@@ -10,43 +10,74 @@ import Container from '../../utils/Container'
 import appState from '../../stores/appState.js'
 import Book from '../../stores/book'
 import CartTitleBox from '../../components/CartTitleBox'
-import Good from '../../components/Good'
+import { Table, Button } from 'antd';
+
+const columns = [
+    {
+        title: 'Name',
+        dataIndex: 'name',
+    },
+    {
+        title: 'Age',
+        dataIndex: 'age',
+    },
+    {
+        title: 'Address',
+        dataIndex: 'address',
+    },
+];
+const data = [];
+for (let i = 0; i < 46; i++) {
+    data.push({
+        key: i,
+        name: `Edward King ${i}`,
+        age: 32,
+        address: `London, Park Lane no. ${i}`,
+    });
+}
 
 const App = observer((props) => {
+    const state = {
+        selectedRowKeys: [], // Check here to configure the default column
+        loading: false,
+    };
 
-    const { isLoading } = appState
+    const start = () => {
+        this.setState({ loading: true });
+        // ajax request after empty completing
+        setTimeout(() => {
+            this.setState({
+                selectedRowKeys: [],
+                loading: false,
+            });
+        }, 1000);
+    };
 
-    const params = {
-        page: 1,
-        size: 10,
-        userID: appState.user['userId']
-    }
+    const onSelectChange = selectedRowKeys => {
+        console.log('selectedRowKeys changed: ', selectedRowKeys);
+        setState({ selectedRowKeys });
+    };
 
-    const params1 = {
-        page: 1,
-        size: 11,
-    }
-
-    useEffect(() => {
-        appState.setLoading(true)
-        const fetchData = async () => {
-            // await getUserRecommend(params, Book.setLike)
-            // await getHotRank(params1, Book.setTop)
-            // await getHotTag(params1, Book.setTag)
-            appState.setLoading(false)
-        }
-        fetchData()
-    }, [])
-
+    const { loading, selectedRowKeys } = state;
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+    };
+    const hasSelected = selectedRowKeys.length > 0;
     return (
-        <Container className="Cart" isLoading={isLoading}>
-            <div className='container-left'>
-                <CartTitleBox title={'我的购物车'}>
-                    <Good data={Book.like} />
-                </CartTitleBox>
+        <div>
+            <div style={{ marginBottom: 16 }}>
+                <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading}>
+                    Reload
+            </Button>
+                <span style={{ marginLeft: 8 }}>
+                    {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+                </span>
             </div>
-        </Container>
+            <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+        </div>
     );
+
 })
 
 export default App;
