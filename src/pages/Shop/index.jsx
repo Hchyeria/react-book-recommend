@@ -10,8 +10,6 @@ import PageLoading from '../../components/loading/index'
 import appState from '../../stores/appState.js'
 import { getBook } from '../../apis/book/list'
 
-
-
 const mapArray = Array.apply(null, Array(3))
 
 const Shop = observer((props) => {

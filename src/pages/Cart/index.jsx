@@ -37,28 +37,26 @@ for (let i = 0; i < 46; i++) {
 }
 
 const App = observer((props) => {
-    const state = {
-        selectedRowKeys: [], // Check here to configure the default column
-        loading: false,
-    };
+
+
+    const [selectedRowKeys, setSelectedRowKeys] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const start = () => {
-        this.setState({ loading: true });
-        // ajax request after empty completing
+
+        setLoading(true)
+ 
         setTimeout(() => {
-            this.setState({
-                selectedRowKeys: [],
-                loading: false,
-            });
+            setSelectedRowKeys([])
+            setLoading(false)
         }, 1000);
     };
 
     const onSelectChange = selectedRowKeys => {
         console.log('selectedRowKeys changed: ', selectedRowKeys);
-        setState({ selectedRowKeys });
+        setSelectedRowKeys(selectedRowKeys)
     };
 
-    const { loading, selectedRowKeys } = state;
     const rowSelection = {
         selectedRowKeys,
         onChange: onSelectChange,
