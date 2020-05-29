@@ -2,9 +2,9 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import {
     observer
-  } from 'mobx-react'
+} from 'mobx-react'
 import './index.styl'
-import { Tag, List, Typography} from 'antd'
+import { Tag, List, Typography } from 'antd'
 
 import BookTitleBox from '../../components/bookTitleBox'
 import Container from '../../utils/Container'
@@ -12,18 +12,19 @@ import appState from '../../stores/appState.js'
 import Book from '../../stores/book'
 import Good from '../../stores/good'
 import OrderSimple from '../../components/orderSimple'
+import getOrderByNo from '../../apis/order/detail.js'
 
 const { Text } = Typography
 
-const OrderDetail= observer((props) => {
+const OrderDetail = observer((props) => {
 
-    
-    const { isLoading } = appState 
+
+    const { isLoading } = appState
 
     const {
-		location: {
-			search
-		},
+        location: {
+            search
+        },
     } = props
 
     const keyMatch = search.match(/\=([\w]*)$/)
@@ -31,16 +32,14 @@ const OrderDetail= observer((props) => {
 
     useEffect(() => {
         appState.setLoading(true)
-        // const fetchData = async () => {
-        //     const data = {
-        //         key: key,
-        //         page: 1,
-        //         size: 10
-        //     }
-        //     await getBookBySearch(data, Book.setList)
-        //     appState.setLoading(false)
-        // }
-        // fetchData() 
+        const fetchData = async () => {
+            const data = {
+                orderNo: key
+            }
+            await getOrderByNo(data, Good.setList)
+            appState.setLoading(false)
+        }
+        fetchData()
         appState.setLoading(false)
     }, [key])
 
@@ -51,10 +50,10 @@ const OrderDetail= observer((props) => {
                     <OrderSimple data={Good.list.mallOrderItemVOS} />
                 </BookTitleBox>
 
-                <Text strong ellipsis style={{width: '90%'}} className='book-hot-list'>
-                  {'订单金额： ' + Good.totalPrice}</Text>
+                <Text strong ellipsis style={{ width: '90%' }} className='book-hot-list'>
+                    {'订单金额： ' + Good.list.totalPrice}</Text>
             </div>
-            
+
         </Container>
     );
 })

@@ -18,16 +18,19 @@ import getUserById from '../../apis/user/center.js'
 import User from '../../stores/user'
 import Order from '../../stores/order'
 import OrderSmall from '../../components/orderSmall'
+import getOrder from '../../apis/order/history.js'
 
 const Home = observer((props) => {
 	const { isLoading } = appState
 
 	const userId = appState.user['userId']
+	// const params = {}
 
 	useEffect(() => {
 		appState.setLoading(true)
 		const fetchData = async () => {
 			await getUserById(userId, User.setInfo)
+			await getOrder(Order.setList)
 			appState.setLoading(false)
 		}
 		fetchData()
@@ -47,13 +50,13 @@ const Home = observer((props) => {
 						{User.reviews.length &&
 							User.reviews.map((ele, index) => (
 								<BookComment
-                                    key={ele.bookId}
+									key={ele.bookId}
 									{...ele}
 								/>
 							))}
 					</BookTitleBox>
 					<BookTitleBox title={'我的订单'}>
-						<OrderSmall data={Order.list}/>
+						<OrderSmall data={Order.list} />
 					</BookTitleBox>
 				</HomeHead>
 			</div>

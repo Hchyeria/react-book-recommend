@@ -7,16 +7,16 @@ const WantRead = memo((props) => {
 	const [value, setValue] = useState(defaultValue)
 
 	const handleClick = () => {
-    const foo = () => {
-      setValue(!value)
-    }
+		const foo = () => {
+			setValue(!value)
+		}
 		upLoadWant && upLoadWant(value, foo)
 	}
 
 	return (
 		<div>
 			<Button type="primary" onClick={handleClick}>
-				{value ? '已想读' : '想读' }
+				{value ? '已想读' : '想读'}
 			</Button>
 		</div>
 	)
