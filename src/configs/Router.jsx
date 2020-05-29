@@ -22,7 +22,7 @@ import Tag from '../pages/Tag'
 import Shop from '../pages/Shop'
 import OrderDetail from '../pages/OrderDetail'
 
-import Cart from '../pages/Cart'
+import MyCart from '../pages/MyCart'
 
 
 const PrivateRoute = ({ isLogin, component: Component, ...rest }) => (
@@ -64,6 +64,6 @@ export default () => (
     <Route path="/order/detail" component={OrderDetail} key="orderDetail" />} />
     <InjectPrivateRoute path="/book/:id" component={BookDetail} key="bookDetail" />
     <Route path="/tag/:id" component={Tag} key="tag" />
-    <Route path="/cart" component={Cart} key="cart" />
+    <Route path="/cart" component={MyCart} key="myCart" />
   </Switch>
 )
