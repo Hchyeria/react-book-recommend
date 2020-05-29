@@ -20,6 +20,7 @@ import Lists from '../pages/List'
 import Search from '../pages/Search'
 import Tag from '../pages/Tag'
 import Shop from '../pages/Shop'
+import OrderDetail from '../pages/OrderDetail'
 
 
 const PrivateRoute = ({ isLogin, component: Component, ...rest }) => (
@@ -58,6 +59,7 @@ export default () => (
     <Route path="/user" exact component={Home} key="user" />} />
     <Route path="/search" component={Search} key="search" />} />
     <Route path="/shop" component={Shop} key="shop" />} />
+    <Route path="/order/detail" component={OrderDetail} key="orderDetail" />} />
     <InjectPrivateRoute path="/book/:id" component={BookDetail} key="bookDetail" />
     <Route path="/tag/:id" component={Tag} key="tag" />
   </Switch>

@@ -22,6 +22,7 @@ const Description = memo(({
 	coverUrl,
 	rating,
 	description,
+	price
 }) => {
 	return (
 		<>
@@ -104,6 +105,13 @@ const Description = memo(({
 				<>
 					<Text type="secondary">{'简介：'}</Text>
 					<Text>{description}</Text>
+					<br />
+				</>
+			) : null}
+			{price ? (
+				<>
+					<Text type="secondary">{'价格：'}</Text>
+					<Text>{price}</Text>
 					<br />
 				</>
 			) : null}

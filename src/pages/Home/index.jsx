@@ -16,6 +16,8 @@ import HomeHead from '../../components/homeHead'
 import BookComment from '../../components/bookComment'
 import getUserById from '../../apis/user/center.js'
 import User from '../../stores/user'
+import Order from '../../stores/order'
+import OrderSmall from '../../components/orderSmall'
 
 const Home = observer((props) => {
 	const { isLoading } = appState
@@ -49,6 +51,9 @@ const Home = observer((props) => {
 									{...ele}
 								/>
 							))}
+					</BookTitleBox>
+					<BookTitleBox title={'我的订单'}>
+						<OrderSmall data={Order.list}/>
 					</BookTitleBox>
 				</HomeHead>
 			</div>

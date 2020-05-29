@@ -3,12 +3,12 @@ import { List, Typography, Rate, Tooltip } from 'antd'
 
 import { Link } from 'react-router-dom'
 import './index.styl'
-import BookInfo from '../bookInfo'
+import GoodInfo from '../goodInfo'
 import defaultUrl from '../../asserts/default.jpg'
 
 const { Paragraph, Text } = Typography
 
-const BookTop = memo(({ pageSize = 5, data, ...props }) => {
+const OrderSimple = memo(({ pageSize = 5, data, ...props }) => {
 	return (
 		<List
 			grid={{ gutter: 16, column: 2 }}
@@ -24,10 +24,10 @@ const BookTop = memo(({ pageSize = 5, data, ...props }) => {
 							width: '74%',
 							margin: '0 auto',
 						}}
-						key={item.bookId}
+						key={item.goodsId}
 						extra={
 							<div className="book-cover">
-								<Link to={`/book/${item.bookId}`}>
+								<Link to={`/book/${item.goodsId}`}>
 									<img
 										style={{
 											width: '9vw',
@@ -44,22 +44,21 @@ const BookTop = memo(({ pageSize = 5, data, ...props }) => {
 						<List.Item.Meta
 							className="book-meta"
 							title={
-								<Link to={`/book/${item.bookId}`}>
-									<Tooltip title={item.bookName}>
+								<Link to={`/book/${item.goodsId}`}>
+									<Tooltip title={item.goodsName}>
 										<Text strong ellipsis className="book-title">
-											{item.bookName}
+											{item.goodsName}
 										</Text>
 									</Tooltip>
 								</Link>
 							}
 							description={
-								<BookInfo
-									author={item.author ? item.author : '未知'}
-									country={item.countryName}
-									tags={item.tags}
-									rating={item.rating}
-									description={item.description}
-									//price={item.price}
+								<GoodInfo
+									goodsId={item.goodsId}
+									goodsCount={item.goodsCount}
+									goodsName={item.goodsName}
+									sellingPrice={item.sellingPrice}
+									author={item.author}
 								/>
 							}
 						/>
@@ -70,4 +69,4 @@ const BookTop = memo(({ pageSize = 5, data, ...props }) => {
 	)
 })
 
-export default BookTop
+export default OrderSimple
