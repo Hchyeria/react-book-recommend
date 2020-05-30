@@ -13,6 +13,8 @@ import CartTitleBox from '../../components/CartTitleBox'
 import { Popconfirm, Table, Button } from 'antd';
 import Cart from '../../stores/cart'
 import getGoods from '../../apis/shopping/my-cart.js'
+import deleteGoods from '../../apis/shopping/delete.js'
+import createOrder from '../../apis/order/create.js'
 
 
 
@@ -42,6 +44,34 @@ const MyCart = observer((props) => {
         console.log('selectedRowKeys changed: ', selectedRowKeys);
         setSelectedRowKeys(selectedRowKeys)
     };
+
+    const handleDelete = (cartItemId) => {
+        // const deleteFoo = async () => {
+        //     const data = {
+        //         mallShoppingCartItemId: cartItemId
+        //     }
+        //     await deleteGoods(data)
+        // }
+        // 
+        // deleteFoo()
+    }
+
+    const handleClick = () => {
+        // var arr = []
+        // for(var i = 0; i < selectedRowKeys.length; i++){
+        //     arr.push(selectedRowKeys[i])
+        // }    
+    
+        // arr.push(selectedRowKeys[0])
+        // console.log(arr)
+        const createFoo = async () => {
+            const data = {
+                itemIds: selectedRowKeys
+            }
+            await createOrder(data)
+        }
+        createFoo()
+    }
 
     const rowSelection = {
         selectedRowKeys,
@@ -73,9 +103,9 @@ const MyCart = observer((props) => {
         {
             title: '操作',
             dataIndex: 'operation',
-            render: (text, record) =>
+            render: () =>
                 Cart.list.length >= 1 ? (
-                    <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+                    <Popconfirm title="Sure to delete?" onConfirm={()=>this.handleDelete({cartItemId})}>
                         <a>Delete</a>
                     </Popconfirm>
                 ) : null
@@ -97,6 +127,7 @@ const MyCart = observer((props) => {
 
             </div>
             <Table rowSelection={rowSelection} columns={columns} dataSource={Cart.list} />
+            <Button type="primary" onClick={handleClick}>下单</Button>
         </div>
     );
 

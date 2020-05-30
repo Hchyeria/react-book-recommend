@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 import { EllipsisOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 import { Card } from 'antd'
 import defaultUrl from '../../asserts/default.jpg'
+import IconText from '../../utils/IconText'
+import addGood from '../../apis/shopping/add.js'
+
 const { Meta } = Card
 
 const descriptionNode = (description, promoStatus) => {
@@ -41,6 +44,18 @@ const CardBox = memo((props) => {
 		rating,
 	} = props
 
+	const handleAddGood = () => {
+		// setValue(value)
+		const addFoo = async () => {
+			const data = {
+				bookId,
+				count: 1
+			}
+			await addGood(data)
+		}
+		addFoo()
+	}
+
 	useEffect(() => {
 		if (loading) {
 			setTimeout(() => setLoading(false), 500)
@@ -54,14 +69,22 @@ const CardBox = memo((props) => {
 					loading={loading}
 					hoverable
 					cover={<img alt="cover" src={coverUrl ? coverUrl : defaultUrl} />}
-					actions={[
-						<ShoppingCartOutlined key="shop" />,
-						<EllipsisOutlined key="ellipsis" />,
-					]}
 				>
-					<Meta title={bookName} description={'￥' + price} />
+				<Meta title={bookName}/>	
 				</Card>
 			</Link>
+
+			<Card
+				actions={[
+					<IconText
+					icon={ShoppingCartOutlined}
+					onClick={handleAddGood}
+					/>
+				]}
+			>
+				<Meta description={'￥' + price} />	
+			</Card>
+
 		</div>
 	)
 })

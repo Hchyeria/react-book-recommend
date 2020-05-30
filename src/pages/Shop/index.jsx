@@ -9,6 +9,8 @@ import { get } from '../../utils/request'
 import PageLoading from '../../components/loading/index'
 import appState from '../../stores/appState.js'
 import { getBook } from '../../apis/book/list'
+import { Button } from 'antd'
+import { Link } from 'react-router-dom'
 
 const mapArray = Array.apply(null, Array(3))
 
@@ -31,6 +33,10 @@ const Shop = observer((props) => {
 
 	return (
 		<Container className="Shop" isLoading={isLoading}>
+  			<Link to={`/cart`}>
+   				 <Button type="primary">我的购物车</Button>
+			</Link>
+
 			{mapArray.map((ele, index) => (
 				<div className="card-one">
 					{Item.list[index].length &&
