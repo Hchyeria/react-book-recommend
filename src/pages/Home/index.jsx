@@ -25,12 +25,17 @@ const Home = observer((props) => {
 
 	const userId = appState.user['userId']
 	// const params = {}
+	// const {
+	// 	match: {
+	// 		params: { id },
+	// 	},
+	// } = props
 
 	useEffect(() => {
 		appState.setLoading(true)
 		const fetchData = async () => {
 			await getUserById(userId, User.setInfo)
-			await getOrder(Order.setList)
+			await getOrder(Order.setInfo)
 			appState.setLoading(false)
 		}
 		fetchData()

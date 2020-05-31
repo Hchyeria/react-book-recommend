@@ -5,25 +5,35 @@ export class Order {
     @observable
     list = [
         {
-            orderId: 1,
-            time: "2020-5-29",
-            money: 99,
+            orderNo: "1",
+            orderStatus: "-1",
+            totalPrice: 122,
+            userAddress: "重庆",
         },
         {
-            orderId: 1,
-            time: "2020-5-29",
-            money: 99,
+            orderNo: "1",
+            orderStatus: "-1",
+            totalPrice: 122,
+            userAddress: "重庆",
         },
         {
-            orderId: 1,
-            time: "2020-5-29",
-            money: 99,
+            orderNo: "1",
+            orderStatus: "-1",
+            totalPrice: 122,
+            userAddress: "重庆",
         },
+
     ]
 
     @action
     setList = (list) => {
         this.list = list
     }
+
+    @action
+	setInfo = (info) => {
+    const { list } = info
+    this.setList(list)
+  }
 }
 export default new Order()

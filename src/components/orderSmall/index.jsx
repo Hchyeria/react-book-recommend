@@ -16,19 +16,19 @@ const OrderSmall = memo((props) => {
 			renderItem={(item) => (          
             
         <List.Item
-          key={item.orderId}
+          key={item.orderNo}
           className='book-order-list-container'
 				>
             <ShopTwoTone className='order-icon'/> 
-          <Link to={`/order/detail?orderNo=${item.orderId}`}>
+          <Link to={`/order/detail?orderNo=${item.orderNo}`}>
               <Text strong ellipsis style={{width: '90%'}} className='book-hot-list'>
-                {'订单编号： ' + item.orderId }
+                {'订单编号： ' + item.ordeeNo }
               </Text>
               <br />
               <Text strong ellipsis style={{width: '90%'}} className='book-hot-list'>
-                  {'订单金额： ' + item.money}</Text>
+                  {'订单金额： ' + item.totalPrice}</Text>
               <br />
-              <Text>{item.time}</Text>
+              <Text>{'用户地址： ' + item.userAddress}</Text>
             </Link>
         </List.Item>
 			)}
