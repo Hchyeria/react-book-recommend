@@ -38,6 +38,11 @@ export class Cart {
 			}
 		))
 	}
+
+	@action
+	deleteItem = (key) => {
+		this.list = this.list.filter(e => e.cartItemId !== key)
+	}
 }
 
 export default new Cart()

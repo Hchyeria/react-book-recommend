@@ -77,7 +77,14 @@ export const post = async ({ url, data = {}}) => {
     let keys = Object.keys(data)
     if (keys && keys.length) {
         for (let k of keys) {
-            urlencoded.append(k, data[k])
+            if (Array.isArray(data[k])) {
+                let len = data[k].length
+                for (let i = 1; i <= len; ++i) {
+                    urlencoded.append(k, data[k][i - 1])
+                }
+            } else {
+                urlencoded.append(k, data[k])
+            }
         }
     }
     const res = await request({
