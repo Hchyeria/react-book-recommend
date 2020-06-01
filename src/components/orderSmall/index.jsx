@@ -22,7 +22,7 @@ const OrderSmall = memo((props) => {
             <ShopTwoTone className='order-icon'/> 
           <Link to={`/order/detail?orderNo=${item.orderNo}`}>
               <Text strong ellipsis style={{width: '90%'}} className='book-hot-list'>
-                {'订单编号： ' + item.ordeeNo }
+                {'订单编号： ' + item.orderNo }
               </Text>
               <br />
               <Text strong ellipsis style={{width: '90%'}} className='book-hot-list'>
