@@ -30,7 +30,7 @@ const Search= observer((props) => {
 		},
     } = props
 
-    const keyMatch = search.match(/\=([\w]*)$/)
+    const keyMatch = search.match(/\=([^]*)$/)
     const key = keyMatch.length > 1 ? keyMatch[1] : ''
 
     useEffect(() => {
