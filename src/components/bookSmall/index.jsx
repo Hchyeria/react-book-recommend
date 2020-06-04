@@ -4,8 +4,10 @@ import { Tag, List, Typography } from 'antd'
 import { Link } from 'react-router-dom'
 import './index.styl'
 
-const { Text } = Typography
 
+import { actionUpload } from '../../utils/utils'
+
+const { Text } = Typography
 const BookSmall = memo((props) => {
 	return (
 		<List
@@ -16,6 +18,7 @@ const BookSmall = memo((props) => {
         <List.Item
           key={index}
           className='book-hot-list-container'
+          onClick={actionUpload(item)}
 				>
           <Link to={`/book/${item.bookId}`}>
               <Text strong ellipsis style={{width: '90%'}} className='book-hot-list'>

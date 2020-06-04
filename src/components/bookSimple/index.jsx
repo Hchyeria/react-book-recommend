@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import './index.styl'
 import BookInfo from '../bookInfo'
 import defaultUrl from '../../asserts/default.jpg'
+import { actionUpload } from '../../utils/utils'
+
 
 const { Paragraph, Text } = Typography
 
@@ -50,6 +52,7 @@ const BookSimple = memo(({ pageSize = 10, closePagination, data, props }) => {
 							</Popover>
 						</div>
 					}
+					onClick={actionUpload(item)}
 				>
 					<List.Item.Meta
 						className="book-meta"

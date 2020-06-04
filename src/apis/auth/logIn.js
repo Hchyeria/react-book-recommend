@@ -3,7 +3,7 @@ import { success } from '../../utils/Message.jsx'
 
 export default async (data, cb) => {
     const res = await post({
-        url: 'user/login',
+        url: '/user/login',
         data
     })
 
@@ -11,7 +11,7 @@ export default async (data, cb) => {
         success('Login successfully!')
         const { token, user } = res.data
         localStorage.setItem('token', token)
-        localStorage.setItem('user', user)
+        localStorage.setItem('user', JSON.stringify(user))
         cb && cb(user)
     }
 }

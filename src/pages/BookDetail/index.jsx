@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo, memo } from 'react'
+import React, { useEffect, useState, useCallback, useMemo, memo, lazy, Suspense } from 'react'
 import { observer } from 'mobx-react'
 import './index.styl'
 import { Typography, Divider, List } from 'antd'
@@ -14,17 +14,20 @@ import IconText from '../../utils/IconText'
 import Container from '../../utils/Container'
 import { getBookById } from '../../apis/book/book.js'
 import getBookRecommend from '../../apis/recommend/book.js'
-import rateBookById from '../../apis/book/rate.js'
+
 import WantRead from '../../components/wantRead'
-import wantBookById from '../../apis/user/want.js'
-import readBookById from '../../apis/user/read.js'
 import HasRead from '../../components/hasRead'
 import defaultUrl from '../../asserts/default.jpg'
-import AddReview from '../../components/addReview'
+
 import getReviewByHot from '../../apis/reviews/agreeNum.js'
 import getReviewByTime from '../../apis/reviews/reviewTime.js'
 
+import { actionUpload } from '../../utils/utils'
+
 const { Title, Paragraph, Text } = Typography
+
+const AddReview = lazy(() => import('../../components/addReview'))
+
 
 const BookDetail = observer((props) => {
 	const { isLoading } = appState
@@ -50,17 +53,23 @@ const BookDetail = observer((props) => {
 	useEffect(() => {
 		appState.setLoading(true)
 		const fetchData = async () => {
-			await getBookById(id, Book.setBookById)
-			await getBookRecommend(params1, Book.setList)
-			await getReviewByTime(params2, ReviewStore.setTime)
-			await getReviewByHot(params2, ReviewStore.setHot)
-			appState.setLoading(false)
+			Promise.all([
+				getBookById(id, Book.setBookById),
+				getBookRecommend(params1, Book.setList),
+				getReviewByTime(params2, ReviewStore.setTime),
+				getReviewByHot(params2, ReviewStore.setHot)
+			]).then(() => {
+				appState.setLoading(false)
+			})
 		}
 		fetchData()
 	}, [id])
 
+	
+
 	const upLoadRate = useCallback((rating) => {
 		const rateFoo = async () => {
+			const rateBookById = (await import('../../apis/book/rate.js')).default
 			const data = {
 				bookID: id,
 				rating
@@ -72,6 +81,7 @@ const BookDetail = observer((props) => {
 
 	const upLoadWant = useCallback((_, cb) => {
 		const wantFoo = async () => {
+			const wantBookById = (await import('../../apis/user/want.js')).default
 			const data = {
 				bookID: id
 			}
@@ -82,6 +92,7 @@ const BookDetail = observer((props) => {
 
 	const upLoadRead = useCallback((_, cb) => {
 		const readFoo = async () => {
+			const readBookById = (await import('../../apis/user/read.js')).default
 			const data = {
 				bookID: id
 			}
@@ -90,6 +101,7 @@ const BookDetail = observer((props) => {
 		readFoo()
 	}, [id])
 
+	
 	const [isShowReviewFrom, setIsShowReviewFrom] = useState(false)
 
 	const handleClickWriteIcon = () => {
@@ -117,6 +129,16 @@ const BookDetail = observer((props) => {
 			hasRead,
 			wantRead
 		} = bookInfo
+
+		useEffect(() => {
+			let bar = actionUpload(bookInfo, 'pv')
+			typeof bar === 'function' && bar()
+			let out = setTimeout(() => {
+				let foo = actionUpload(bookInfo, 'pv-5')
+				typeof foo === 'function' && foo()
+			}, 1000 * 60 * 5)
+			return () => clearTimeout(out)
+		}, [id])
 
 		return (
 			<>
@@ -146,7 +168,7 @@ const BookDetail = observer((props) => {
 
 				<div className="want-read">
 					<div className="want">
-						<WantRead upLoadWant={upLoadWant} defaultValue={wantRead} />
+						<WantRead upLoadWant={upLoadWant} defaultValue={wantRead} book={bookInfo} />
 					</div>
 
 					<div className="read">
@@ -226,7 +248,11 @@ const BookDetail = observer((props) => {
 				<Divider className="divider-style" />
 				{
 					isShowReviewFrom
-						? <AddReview bookId={id} />
+						? (
+							<Suspense fallback={<div />}>
+								<AddReview bookId={id} />
+							</Suspense>
+						)
 						: null
 				}
 			</>

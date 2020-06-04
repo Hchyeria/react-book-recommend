@@ -1,4 +1,5 @@
 import React, { memo, useState } from 'react'
+import moment from 'moment'
 import { List, Typography, Rate } from 'antd'
 import { Link } from 'react-router-dom'
 import { LikeOutlined, CommentOutlined, LikeFilled, DeleteOutlined } from '@ant-design/icons'
@@ -72,7 +73,7 @@ const Review = memo((props) => {
 					/>
 				) : null}
 
-				<Text className="margin-right-10">{reviewTime}</Text>
+				<Text className="margin-right-10">{moment(reviewTime).format("YYYY-MM-DD")}</Text>
 			</div>
 			<Paragraph ellipsis={{ rows: 2, expandable: true }} type="secondary">
 				{content}

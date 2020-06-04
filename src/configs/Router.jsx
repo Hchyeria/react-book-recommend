@@ -58,12 +58,12 @@ export default () => (
     <Route path="/login" component={Login} key="login" />
     <InjectPrivateRoute path="/recommend" exact component={Recommend} key="recommend" />} />
     <Route path="/list" exact component={Lists} key="index" />} />
-    <Route path="/user" exact component={Home} key="user" />} />
+    <InjectPrivateRoute path="/user" exact component={Home} key="user" />} />
     <Route path="/search" component={Search} key="search" />} />
-    <Route path="/shop" component={Shop} key="shop" />} />
-    <Route path="/order/detail" component={OrderDetail} key="orderDetail" />} />
+    <InjectPrivateRoute path="/shop" component={Shop} key="shop" />} />
+    <InjectPrivateRoute path="/order/detail" component={OrderDetail} key="orderDetail" />} />
     <InjectPrivateRoute path="/book/:id" component={BookDetail} key="bookDetail" />
-    <Route path="/tag/:id" component={Tag} key="tag" />
-    <Route path="/cart" component={MyCart} key="myCart" />
+    <InjectPrivateRoute path="/tag/:id" component={Tag} key="tag" />
+    <InjectPrivateRoute path="/cart" component={MyCart} key="myCart" />
   </Switch>
 )

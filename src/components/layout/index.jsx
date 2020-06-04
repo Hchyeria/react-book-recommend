@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useCallback, useEffect } from 'react'
 import { Layout, Avatar, Button, Tooltip, Dropdown, Menu, Input } from 'antd'
 import { observer } from 'mobx-react'
 import { UserOutlined } from '@ant-design/icons'
@@ -9,7 +9,7 @@ import './index.styl'
 import Container from '../../utils/Container'
 import appState from '../../stores/appState'
 import logo from '../../asserts/logo.png'
-
+import { getTab } from '../../utils/utils'
 const style = {
   width: '100%',
   maxWidth: 1200,
@@ -21,12 +21,18 @@ const style = {
 
 const { Header, Content, Footer } = Layout
 
+
 const AppLayout = observer(({ children, history }) => {
 	const { isLogin } = appState
 
 	const { query: { query = '' } = {} } = history
-
+	
+	const [tabKey, setTabValue] = useState(getTab(history.location.pathname))
 	const [search, setSearch] = useState(query)
+
+	useEffect(() => {
+		setTabValue(getTab(history.location.pathname))
+	}, [history.location.pathname]);
 
 	const handleSearchChange = useMemo(
 		() => (e) => {
@@ -71,7 +77,7 @@ const AppLayout = observer(({ children, history }) => {
 							</div>
 							<Menu
 								mode="horizontal"
-								defaultSelectedKeys={['1']}
+								defaultSelectedKeys={[tabKey]}
 								style={{ lineHeight: '62px', marginRight: '10px' }}
 							>
 								<Menu.Item key="1">

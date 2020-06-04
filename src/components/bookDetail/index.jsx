@@ -5,10 +5,14 @@ import { Link } from 'react-router-dom'
 import './index.styl'
 import BookInfo from '../bookInfo'
 import defaultUrl from '../../asserts/default.jpg'
-
+import { actionUpload } from '../../utils/utils'
 const { Paragraph, Text } = Typography
 
+
 const BookDetail = memo(({ pageSize = 5, data, ...props }) => {
+
+	const pathName = window.location.pathname.slice(1) || 'home'
+
 	return (
 		<List
 			grid={{ gutter: 16, column: 2 }}
@@ -18,7 +22,10 @@ const BookDetail = memo(({ pageSize = 5, data, ...props }) => {
 			}}
 			dataSource={data}
 			renderItem={(item) => (
-				<div style={{ width: '46%', marginBottom: '20px' }}>
+				<div 
+					style={{ width: '46%', marginBottom: '20px' }}
+					onClick={actionUpload(item)}
+				>
 					<List.Item
 						className="book-card"
 						style={{ marginBottom: '10px', height: '130px' }}

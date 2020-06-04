@@ -34,9 +34,12 @@ const Home = observer((props) => {
 	useEffect(() => {
 		appState.setLoading(true)
 		const fetchData = async () => {
-			await getUserById(userId, User.setInfo)
-			await getOrder(Order.setInfo)
-			appState.setLoading(false)
+			Promise.all([
+				getUserById(userId, User.setInfo),
+				getOrder(Order.setInfo)
+			]).then(() => {
+				appState.setLoading(false)
+			})
 		}
 		fetchData()
 	}, [userId])

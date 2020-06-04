@@ -33,9 +33,12 @@ const Recommend = observer((props) => {
     useEffect(() => {
         appState.setLoading(true)
         const fetchData = async () => {
-            await getUserRecommend(params, Book.setLike)
-            await getUserRecommendTag(params1, Book.setTag)
-            appState.setLoading(false)
+            Promise.all([
+                getUserRecommend(params, Book.setLike),
+                getUserRecommendTag(params1, Book.setTag)
+            ]).then(() => {
+                appState.setLoading(false)
+            })
         }
         fetchData() 
     }, [])
