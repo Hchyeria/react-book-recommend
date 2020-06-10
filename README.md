@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+douban annual refers to https://github.com/Jon-000/douban-annual-react
+
 ## Available Scripts
 
 ### npm config set registry https://registry.npm.taobao.org
