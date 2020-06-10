@@ -31,7 +31,7 @@ const Annual = observer((props) => {
 	function getHeaderData() {
 		getSummary().then(res => {
 			setMenuItems(res.widgetInfos)
-			setBgAudioList(res.bgMusic)
+			setBgAudioList(JSON.parse(res.bgMusic))
 			setIsHeaderDataLoaded(true)
 		})
 	}
