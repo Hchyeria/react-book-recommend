@@ -57,6 +57,11 @@ export class Book {
 		this.tags = tags
 	}
 
+	@action
+	deleteBook = (key) => {
+		this.list = this.list.filter(e => e.bookId !== key)
+	}
+
 }
 
 export default new Book()

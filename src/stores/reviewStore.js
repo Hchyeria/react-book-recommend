@@ -88,6 +88,11 @@ export class ReviewStore {
     setTime = (time) => {
         this.time = time
     }
+
+    @action
+	deleteReview= (key) => {
+		this.time = this.time.filter(e => e.reviewId !== key)
+	}
 }
 
 export default new ReviewStore()

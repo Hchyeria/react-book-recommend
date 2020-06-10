@@ -61,6 +61,9 @@ const AppLayout = observer(({ children, history }) => {
 					注销
 				</Button>
 			</Menu.Item>
+			<Menu.Item>
+				<Link to="/admin">后台管理</Link>
+			</Menu.Item>
 		</Menu>
 	)
 	console.log(children)
