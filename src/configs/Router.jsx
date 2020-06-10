@@ -21,8 +21,11 @@ import Search from '../pages/Search'
 import Tag from '../pages/Tag'
 import Shop from '../pages/Shop'
 import OrderDetail from '../pages/OrderDetail'
-
+import Admin from '../pages/Admin'
 import MyCart from '../pages/MyCart'
+import AddRate from '../pages/AddRate'
+import ManageReview from '../pages/ManageReview'
+import AdminSearch from '../pages/AdminSearch'
 
 
 const PrivateRoute = ({ isLogin, component: Component, ...rest }) => (
@@ -65,5 +68,10 @@ export default () => (
     <InjectPrivateRoute path="/book/:id" component={BookDetail} key="bookDetail" />
     <InjectPrivateRoute path="/tag/:id" component={Tag} key="tag" />
     <InjectPrivateRoute path="/cart" component={MyCart} key="myCart" />
+    <InjectPrivateRoute path="/admin" component={Admin} key="admin" />
+    <InjectPrivateRoute path="/addrate/:id" component={AddRate} key="addRate" />
+    <InjectPrivateRoute path="/mreview/:id" component={ManageReview} key="manageReview" />
+    <InjectPrivateRoute path="/msearch" component={AdminSearch} key="adminSearch" />
+
   </Switch>
 )
