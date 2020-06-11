@@ -11,6 +11,11 @@ const CarouselComponent = memo((props) => {
                         <div className="banner" key={`banner-${index}`}>
                             <img 
                                 src={ele}
+                                style={{
+                                    width: '100%',
+                                    height: '340px',
+                                    objectFit: 'contain'
+                                }}
                             />
                         </div>
                     ))
