@@ -115,6 +115,7 @@ const MyCart = observer((props) => {
 
 	return (
 		<Container className="Search">
+
 			<div style={{ marginBottom: 16 }}>
 				<Button
 					type="primary"
@@ -134,7 +135,13 @@ const MyCart = observer((props) => {
 			<Link to={`/fillinfo`}>
 				<Button type="primary" onClick={handleClick}>
 					下单
-			</Button>
+					</Button>
+			</Link>
+			<br />
+			<Link to={`/orderList`}>
+				<Button type="primary">
+					订单列表
+				</Button>
 			</Link>
 		</Container>
 	)

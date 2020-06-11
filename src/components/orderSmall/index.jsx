@@ -6,6 +6,11 @@ import { Link } from 'react-router-dom'
 import './index.styl'
 import OrderSimple from '../../components/orderSimple'
 import BookTitleBox from '../../components/bookTitleBox'
+import Good from '../../stores/good'
+
+import orderSmallTitleBox from '../../components/orderSmallTitleBox'
+import OrderSmallSimple from '../../components/orderSmallSimple'
+
 const { Text } = Typography
 
 const OrderSmall = memo((props) => {
@@ -30,6 +35,12 @@ const OrderSmall = memo((props) => {
               {'订单金额： ' + item.totalPrice}</Text>
             <br />
             <Text>{'用户地址： ' + item.userAddress}</Text>
+            <br />
+            <Text>{'订单包含以下商品： ' + item.userAddress}</Text>
+            <br />
+            <orderSmallTitleBox >
+              <OrderSmallSimple data={item.mallOrderItemVOS} />
+            </orderSmallTitleBox>
 
           </Link>
         </List.Item>

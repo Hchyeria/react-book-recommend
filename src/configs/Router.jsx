@@ -27,6 +27,7 @@ import AddRate from '../pages/AddRate'
 import ManageReview from '../pages/ManageReview'
 import AdminSearch from '../pages/AdminSearch'
 import FillInfo from '../pages/FillInfo'
+import OrderList from '../pages/OrderList'
 
 
 const PrivateRoute = ({ isLogin, component: Component, ...rest }) => (
@@ -75,6 +76,7 @@ export default () => (
     <InjectPrivateRoute path="/msearch" component={AdminSearch} key="adminSearch" />
 
     <Route path="/fillinfo" exact component={FillInfo} key="fillinfo" />} />
+    <InjectPrivateRoute path="/orderlist" component={OrderList} key="orderList" />
 
   </Switch>
 )

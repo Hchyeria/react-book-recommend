@@ -19,6 +19,7 @@ import User from '../../stores/user'
 import Order from '../../stores/order'
 import OrderSmall from '../../components/orderSmall'
 import getOrder from '../../apis/order/history.js'
+import orderSmallTitleBox from '../../components/orderSmallTitleBox'
 
 const Home = observer((props) => {
 	const { isLoading } = appState
@@ -63,9 +64,9 @@ const Home = observer((props) => {
 								/>
 							))}
 					</BookTitleBox>
-					<BookTitleBox title={'我的订单'}>
+					{/* <BookTitleBox title={'我的订单'}>
 						<OrderSmall data={Order.list} />
-					</BookTitleBox>
+					</BookTitleBox> */}
 				</HomeHead>
 			</div>
 		</Container>
