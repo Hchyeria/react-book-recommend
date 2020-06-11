@@ -2,31 +2,7 @@ import React, { lazy, Suspense } from 'react'
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 
 import { inject, observer } from 'mobx-react'
-
-<<<<<<< HEAD
-import App from '../pages/Index'
-import Login from '../pages/LoginRegister'
-import BookDetail from '../pages/BookDetail'
-import Recommend from '../pages/Recommend'
-import Home from '../pages/Home'
-import Lists from '../pages/List'
-import Search from '../pages/Search'
-import Tag from '../pages/Tag'
-import Shop from '../pages/Shop'
-import OrderDetail from '../pages/OrderDetail'
-import Admin from '../pages/Admin'
-import MyCart from '../pages/MyCart'
-import AddRate from '../pages/AddRate'
-import ManageReview from '../pages/ManageReview'
-import AdminSearch from '../pages/AdminSearch'
-import FillInfo from '../pages/FillInfo'
-<<<<<<< HEAD
-import OrderList from '../pages/OrderList'
-=======
-=======
 import PageLoading from '../components/loading'
->>>>>>> 3e6e4cdd62d4e9d3c9e2c17035b291471f1d0c9e
->>>>>>> 2ea4da622e0f9f5500475ed546c38d3446c69dae
 
 const Layout = lazy(() => import('../components/layout'))
 const App = lazy(() => import('../pages/Index'))
@@ -41,6 +17,8 @@ const Shop = lazy(() => import('../pages/Shop'))
 const OrderDetail = lazy(() => import('../pages/OrderDetail'))
 const MyCart = lazy(() => import('../pages/MyCart'))
 const Annual = lazy(() => import('../pages/Annual'))
+const FillInfo = lazy(() => import('../pages/FillInfo'))
+const OrderList = lazy(() => import('../pages/OrderList'))
 
 const PrivateRoute = ({ isLogin, component: Component, ...rest }) => (
 	<Route
@@ -102,12 +80,13 @@ export default () => (
 				key="orderDetail"
 			/>
 
-<<<<<<< HEAD
-    <Route path="/fillinfo" exact component={FillInfo} key="fillinfo" />} />
-    <InjectPrivateRoute path="/orderlist" component={OrderList} key="orderList" />
+			<LayoutRoute path="/fillinfo" exact component={FillInfo} key="fillinfo" />
+			<InjectPrivateRoute
+				path="/orderlist"
+				component={OrderList}
+				key="orderList"
+			/>
 
-  </Switch>
-=======
 			<InjectPrivateRoute
 				path="/book/:id"
 				component={BookDetail}
@@ -118,5 +97,4 @@ export default () => (
 			<Route path="/annual" component={Annual} isSelfLayout key="annual" />
 		</Switch>
 	</Suspense>
->>>>>>> 3e6e4cdd62d4e9d3c9e2c17035b291471f1d0c9e
 )

@@ -16,8 +16,8 @@ body,
 
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue,
-    PingFang SC, Hiragino Sans GB, STHeiti, Microsoft Yahei, Wenquanyi Micro Hei, sans-serif;
+  font-family: '-apple-system', BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
+    'PingFang SC', 'Hiragino Sans GB', STHeiti, 'Microsoft Yahei', 'Wenquanyi Micro Hei', 'sans-serif';
   font-size: 75%;
 }
 @media only screen and (max-width: 320px) {
@@ -33,7 +33,7 @@ html {
 
   
 /* 防止移动端chrome的pull-to-refresh effect  */
-body {
+.annual-container {
   position: fixed;
   overflow: hidden;
   margin: 0;
@@ -47,10 +47,10 @@ body {
 
 
 /* Reset `button` and button-style `input` default styles */
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
-button {
+.annual-container input[type="submit"],
+.annual-container input[type="reset"],
+.annual-container input[type="button"],
+.annual-container button {
   outline:none;
     background: none;
     border: 0;
@@ -65,20 +65,20 @@ button {
        -moz-user-select: none;
         -ms-user-select: none;
 }
-input::-moz-focus-inner,
-button::-moz-focus-inner {
+.annual-container input::-moz-focus-inner,
+.annual-container button::-moz-focus-inner {
     border: 0;
     padding: 0;
 }
 
 
 /* custom */
-a {
+.annual-container a {
   color: #7e8c8d;
   text-decoration: none;
   -webkit-backface-visibility: hidden;
 }
 
-li {
+.annual-container li {
   list-style: none;
 }
