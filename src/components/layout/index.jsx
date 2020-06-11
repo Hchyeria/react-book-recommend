@@ -66,6 +66,7 @@ const AppLayout = observer(({ children, history }) => {
 			</Menu.Item>
 		</Menu>
 	)
+	console.log(children)
 
 	return (
 		<Layout>
@@ -90,7 +91,7 @@ const AppLayout = observer(({ children, history }) => {
 									<Link to="/recommend">小葵花猜</Link>
 								</Menu.Item>
 								<Menu.Item key="3">
-									<Link to="/list">年度榜单</Link>
+									<Link to="/annual">年度榜单</Link>
 								</Menu.Item>
 								<Menu.Item key="4">
 									<Link to="/shop">小葵花书店</Link>
