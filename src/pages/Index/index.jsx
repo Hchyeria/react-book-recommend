@@ -8,12 +8,16 @@ import BookDetail from '../../components/bookDetail'
 import BookSimple from '../../components/bookSimple'
 import TagList from '../../components/tagList'
 import BookSmall from '../../components/bookSmall'
+import Carousel from '../../components/Carousel'
+
 import Container from '../../utils/Container'
 import appState from '../../stores/appState.js'
 import Book from '../../stores/book'
 import getUserRecommend from '../../apis/recommend/user.js'
 import getHotRank from '../../apis/recommend/hotRank.js'
 import getHotTag from '../../apis/recommend/hotTag.js'
+
+const banners = ['/fakeApi/assets/2333/145039.jpg', '/fakeApi/assets/2333/00611145049.jpg', '/fakeApi/assets/2333/11145054.jpg']
 
 const App = observer((props) => {
 	const { isLoading } = appState
@@ -45,6 +49,13 @@ const App = observer((props) => {
 	}, [])
 
 	return (
+		<>
+		<Carousel 
+			urls={banners} 
+			style={{
+				width: '100%'
+			}} 
+		/>
 		<Container className="App" isLoading={isLoading}>
 			<div className="container-left">
 				<BookTitleBox title={'猜你可能感兴趣的图书'}>
@@ -63,6 +74,7 @@ const App = observer((props) => {
 				</BookTitleBox>
 			</div>
 		</Container>
+		</>
 	)
 })
 
