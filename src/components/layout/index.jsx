@@ -63,7 +63,6 @@ const AppLayout = observer(({ children, history }) => {
 			</Menu.Item>
 		</Menu>
 	)
-	console.log(children)
 
 	return (
 		<Layout>

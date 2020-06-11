@@ -4,7 +4,7 @@ import styles from './Loading.module.styl';
 
 function Loading(props) {
   return (
-    <div className={styles.container}>
+    <div className={styles.containerLoading}>
       <span>Loading</span>
     </div>
   )

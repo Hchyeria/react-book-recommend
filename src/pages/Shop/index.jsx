@@ -11,8 +11,11 @@ import appState from '../../stores/appState.js'
 import { getBook } from '../../apis/book/list'
 import { Button } from 'antd'
 import { Link } from 'react-router-dom'
+import Carousel from '../../components/Carousel'
 
-const mapArray = Array.apply(null, Array(3))
+const banners = ['/fakeApi/assets/2333/145039.jpg', '/fakeApi/assets/2333/00611145049.jpg', '/fakeApi/assets/2333/11145054.jpg']
+
+const mapArray = Array.apply(null, Array(4))
 
 const Shop = observer((props) => {
 	const { isLoading } = appState
@@ -32,20 +35,28 @@ const Shop = observer((props) => {
 	}, [])
 
 	return (
-		<Container className="Shop" isLoading={isLoading}>
-  			<Link to={`/cart`}>
-   				 <Button type="primary">我的购物车</Button>
-			</Link>
+		<>
+			<Carousel
+				urls={banners}
+				style={{
+					width: '100%',
+				}}
+			/>
+			<Container className="Shop" isLoading={isLoading}>
+				<Link to={`/cart`}>
+					<Button type="primary">我的购物车</Button>
+				</Link>
 
-			{mapArray.map((ele, index) => (
-				<div className="card-one">
-					{Item.list[index].length &&
-						Item.list[index].map(({ id, ...rest }) => (
-							<Card key={id} id={id} {...rest} />
-						))}
-				</div>
-			))}
-		</Container>
+				{mapArray.map((ele, index) => (
+					<div className="card-one">
+						{Item.list[index].length &&
+							Item.list[index].map(({ id, ...rest }) => (
+								<Card key={id} id={id} {...rest} />
+							))}
+					</div>
+				))}
+			</Container>
+		</>
 	)
 })
 
