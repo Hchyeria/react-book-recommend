@@ -12,22 +12,22 @@ export class Cart {
 			goodsName: "艾略特波浪理论",
 			sellingPrice: 38
 		},
-		{
-			key: 3,
-			cartItemId: 3,
-			goodsId: 23,
-			goodsCount: 1,
-			goodsName: "艾略特波浪理论",
-			sellingPrice: 38
-		},
-		{
-			key: 3,
-			cartItemId: 3,
-			goodsId: 23,
-			goodsCount: 1,
-			goodsName: "艾略特波浪理论",
-			sellingPrice: 38
-		},
+		// {
+		// 	key: 3,
+		// 	cartItemId: 3,
+		// 	goodsId: 23,
+		// 	goodsCount: 1,
+		// 	goodsName: "艾略特波浪理论",
+		// 	sellingPrice: 38
+		// },
+		// {
+		// 	key: 3,
+		// 	cartItemId: 3,
+		// 	goodsId: 23,
+		// 	goodsCount: 1,
+		// 	goodsName: "艾略特波浪理论",
+		// 	sellingPrice: 38
+		// },
 	]
 	@action
 	setList = (list) => {

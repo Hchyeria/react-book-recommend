@@ -3,12 +3,12 @@ import { post } from '../../utils/request'
 
 export default async (params, cb) => {
     const res = await post({
-        url: '/order/create',
+        url: '/shopping/update',
         data: params,
     })
 
     if (res.status) {
-        // success(`下单成功！`)
+        // success(`从购物车删除成功！`)
         cb && cb(res.data)
     }
 }

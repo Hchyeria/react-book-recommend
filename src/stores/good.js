@@ -74,5 +74,5 @@ export class Good {
     }
 }
 export default new Good()
-	
+
 

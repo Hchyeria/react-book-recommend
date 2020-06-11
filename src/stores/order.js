@@ -24,6 +24,72 @@ export class Order {
         },
 
     ]
+    // list = [
+    //     {
+    //         orderNo: 1,
+    //         totalPrice: 158,
+    //         orderStatus: '',
+    //         userAddress: '',
+    //         mallOrderItemVOS: [
+    //             {
+    //                 goodsId: 1,
+    //                 goodsCount: 2,
+    //                 goodsName: '单片机原理及应用',
+    //                 sellingPrice: 78,
+    //                 author: '[韩]李沧东',
+    //                 coverUrl: '',
+    //             },
+    //             {
+    //                 goodsId: 1,
+    //                 goodsCount: 2,
+    //                 goodsName: '单片机原理及应用',
+    //                 sellingPrice: 78,
+    //                 author: '[韩]李沧东',
+    //                 coverUrl: '',
+    //             },
+    //         ],
+    //     },
+    //     {
+    //         orderNo: 8801,
+    //         totalPrice: 158,
+    //         orderStatus: '',
+    //         userAddress: '',
+    //         mallOrderItemVOS: [
+    //             {
+    //                 goodsId: 1,
+    //                 goodsCount: 2,
+    //                 goodSName: '单片机原理及应用',
+    //                 sellingPrice: 78
+    //             },
+    //             {
+    //                 goodsId: 1,
+    //                 goodsCount: 2,
+    //                 goodSName: '单片机原理及应用',
+    //                 sellingPrice: 78
+    //             },
+    //         ],
+    //     },
+    //     {
+    //         orderNo: 8801,
+    //         totalPrice: 158,
+    //         orderStatus: '',
+    //         userAddress: '',
+    //         mallOrderItemVOS: [
+    //             {
+    //                 goodsId: 1,
+    //                 goodsCount: 2,
+    //                 goodSName: '单片机原理及应用',
+    //                 sellingPrice: 78
+    //             },
+    //             {
+    //                 goodsId: 1,
+    //                 goodsCount: 2,
+    //                 goodSName: '单片机原理及应用',
+    //                 sellingPrice: 78
+    //             },
+    //         ],
+    //     }
+    // ]
 
     @action
     setList = (list) => {
@@ -31,9 +97,9 @@ export class Order {
     }
 
     @action
-	setInfo = (info) => {
-    const { list } = info
-    this.setList(list)
-  }
+    setInfo = (info) => {
+        const { list } = info
+        this.setList(list)
+    }
 }
 export default new Order()

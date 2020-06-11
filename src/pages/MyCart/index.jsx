@@ -13,6 +13,8 @@ import Cart from '../../stores/cart'
 import getGoods from '../../apis/shopping/my-cart.js'
 import deleteGoods from '../../apis/shopping/delete.js'
 import createOrder from '../../apis/order/create.js'
+import update from '../../apis/shopping/update.js'
+import { Link } from 'react-router-dom'
 
 const MyCart = observer((props) => {
 	useEffect(() => {
@@ -60,7 +62,6 @@ const MyCart = observer((props) => {
 		// for(var i = 0; i < selectedRowKeys.length; i++){
 		//     arr.push(selectedRowKeys[i])
 		// }
-
 		// arr.push(selectedRowKeys[0])
 		// console.log(arr)
 		const createFoo = async () => {
@@ -70,6 +71,12 @@ const MyCart = observer((props) => {
 			await createOrder(data)
 		}
 		createFoo()
+		// window.location.reload()
+		// const foo = async () => {
+		// 	await createFoo()
+		// 	window.location.reload()
+		// }
+		// foo()
 	}
 
 	const rowSelection = {
@@ -121,14 +128,17 @@ const MyCart = observer((props) => {
 			<Table
 				rowSelection={rowSelection}
 				columns={columns}
-                dataSource={Cart.list}
-                style={{width: '100%'}}
+				dataSource={Cart.list}
+				style={{ width: '100%' }}
 			/>
-			<Button type="primary" onClick={handleClick}>
-				下单
+			<Link to={`/fillinfo`}>
+				<Button type="primary" onClick={handleClick}>
+					下单
 			</Button>
+			</Link>
 		</Container>
 	)
+
 })
 
 export default MyCart

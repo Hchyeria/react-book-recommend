@@ -26,6 +26,7 @@ import MyCart from '../pages/MyCart'
 import AddRate from '../pages/AddRate'
 import ManageReview from '../pages/ManageReview'
 import AdminSearch from '../pages/AdminSearch'
+import FillInfo from '../pages/FillInfo'
 
 
 const PrivateRoute = ({ isLogin, component: Component, ...rest }) => (
@@ -72,6 +73,8 @@ export default () => (
     <InjectPrivateRoute path="/addrate/:id" component={AddRate} key="addRate" />
     <InjectPrivateRoute path="/mreview/:id" component={ManageReview} key="manageReview" />
     <InjectPrivateRoute path="/msearch" component={AdminSearch} key="adminSearch" />
+
+    <Route path="/fillinfo" exact component={FillInfo} key="fillinfo" />} />
 
   </Switch>
 )
