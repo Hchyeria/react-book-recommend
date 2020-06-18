@@ -35,7 +35,7 @@ const Recommend = observer((props) => {
         const fetchData = async () => {
             Promise.all([
                 getUserRecommend(params, Book.setLike),
-                getUserRecommendTag(params1, Book.setTag)
+                getUserRecommendTag(params1, Book.setRecommendTags)
             ]).then(() => {
                 appState.setLoading(false)
             })

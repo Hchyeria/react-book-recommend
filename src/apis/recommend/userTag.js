@@ -2,7 +2,7 @@ import { get } from '../../utils/request'
 import Book from '../../stores/book'
 
 export default async (params, cb) => {
-    if (!Book.tags.length) return
+    if (Book.recommendTags.length) return
     const res = await get({
         url: '/recommend/userTag',
         params

@@ -3,6 +3,7 @@ import { Tag, List } from 'antd'
 
 import { Link } from 'react-router-dom'
 import './index.styl'
+import item from '../../stores/item'
 
 const RecommendTagList = memo(({ className, column = 8, ...props }) => {
 
@@ -22,7 +23,7 @@ const RecommendTagList = memo(({ className, column = 8, ...props }) => {
 					key={index}
 					extra={
 						<Tag key={index}>
-							<Link to={`/tag/${index}`}>{item}</Link>
+							<Link to={`/tag/${item.tagId}`}>{item.tagName}</Link>
 						</Tag>
 					}
 				>

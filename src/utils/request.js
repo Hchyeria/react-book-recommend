@@ -2,8 +2,9 @@ import { error } from './Message'
 import appState from '../stores/appState'
 import axios from 'axios'
 
-export const BASE_URL = 'http://localhost:3000/api'
-// export const BASE_URL = 'http://book.wechatmore.xyz/api'
+// export const BASE_URL = 'http://localhost:3000/api'
+export const BASE_URL = 'http://book.wechatmore.xyz/api'
+export const STREAM_URL = 'http://stream.book.wechatmore.xyz'
 
 const request = async (
   {

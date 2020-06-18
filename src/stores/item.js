@@ -2,7 +2,7 @@ import { observable, action } from 'mobx'
 
 const convertList = (list) => {
 	let len = list.length
-	let temp = [[], [], [], []]
+	let temp = [[], [], [], [], []]
 	for (let i = 0; i < len; ++i) {
 		temp[i % temp.length].push(list[i])
 	}
@@ -11,7 +11,7 @@ const convertList = (list) => {
 
 export class Item {
 	@observable
-	list = [[], [], [], []]
+	list = [[], [], [], [], []]
 
 	@action
 	setList = (list) => {

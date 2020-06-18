@@ -12,10 +12,11 @@ import { getBook } from '../../apis/book/list'
 import { Button } from 'antd'
 import { Link } from 'react-router-dom'
 import Carousel from '../../components/Carousel'
+import { ShoppingCartOutlined } from '@ant-design/icons'
 
 const banners = ['/fakeApi/assets/2333/145039.jpg', '/fakeApi/assets/2333/00611145049.jpg', '/fakeApi/assets/2333/11145054.jpg']
 
-const mapArray = Array.apply(null, Array(4))
+const mapArray = Array.apply(null, Array(5))
 
 const Shop = observer((props) => {
 	const { isLoading } = appState
@@ -42,10 +43,13 @@ const Shop = observer((props) => {
 					width: '100%',
 				}}
 			/>
+
+			<Link to={`/cart`} className="shop-cart">
+				<ShoppingCartOutlined />
+		
+			</Link>
 			<Container className="Shop" isLoading={isLoading}>
-				<Link to={`/cart`}>
-					<Button type="primary">我的购物车</Button>
-				</Link>
+				
 
 				{mapArray.map((ele, index) => (
 					<div className="card-one">

@@ -58,6 +58,10 @@ export class Book {
 	}
 
 	@action
+	setRecommendTags = (tags) => {
+		this.recommendTags = tags
+	}
+	@action
 	deleteBook = (key) => {
 		this.list = this.list.filter(e => e.bookId !== key)
 	}

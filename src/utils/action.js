@@ -1,4 +1,4 @@
-import { BASE_URL } from './request'
+import { STREAM_URL } from './request'
 import { Base64 } from 'js-base64'
 import appState from '../stores/appState'
 
@@ -52,7 +52,7 @@ const actionProxy = function () {
 const fetchBatch = () => {
   const data = localStorage.getItem(key)
 	let base64 = Base64.encode(data + Date.now())
-	fetch(`${BASE_URL}/streaming.gif?${base64}`, {
+	fetch(`${STREAM_URL}/streaming.gif?${base64}`, {
 		method: 'HEAD',
 		mode: 'no-cors',
 	})
